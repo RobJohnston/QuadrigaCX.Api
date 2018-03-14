@@ -5,11 +5,10 @@
     
     <PackageId>QuadrigaCX.Api</PackageId>
     <Title>QuadrigaCX.Api</Title>
-    <Version>0.0.1</Version>
+    <Version>0.0.2-alpha</Version>
     <Authors>rob_johnston</Authors>
     <Description>A .Net Standard client for the QuadrigaCX cryptocurrency API.</Description>
     <Copyright>Copyright © 2018 Rob Johnston</Copyright>
-    <Company>6178464 Canada Inc.</Company>
     <PackageLicenseUrl>https://github.com/RobJohnston/QuadrigaCX.Api/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/RobJohnston/QuadrigaCX.Api</PackageProjectUrl>
     <PackageReleaseNotes>
@@ -18,6 +17,9 @@
       Also, the API does not yet include the trading, deposit, and withdrawal functionality.
 
       Contribute to this project by sending some XɃT my way: 3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
+      
+      Sign-up with QuadrigaCX:
+      https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l
     </PackageReleaseNotes>
     <PackageTags>C#; netstandard; async; api-client; cryptocurrency; bitcoin; quadrigacx</PackageTags>
     <RepositoryUrl>https://github.com/RobJohnston/QuadrigaCX.Api</RepositoryUrl>

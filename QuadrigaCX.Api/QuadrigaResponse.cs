@@ -3,7 +3,7 @@
 namespace QuadrigaCX.Api
 {
     /// <summary>
-    /// Wrapper around the response from QuadrigaCX API that combines the expectd result with a possible error.
+    /// Wrapper around the response from QuadrigaCX API which could be the expected result or an error.
     /// </summary>
     /// <typeparam name="T">Type of result.</typeparam>
     public class QuadrigaResponse<T>
@@ -22,6 +22,6 @@ namespace QuadrigaCX.Api
         /// <summary>
         /// Gets or sets the raw Json result of a request.
         /// </summary>
-        public string RawJson { get; set; }
+        //public string RawJson { get; set; }
     }
 }

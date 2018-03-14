@@ -65,12 +65,11 @@ namespace QuadrigaCX.Api
         /// <typeparam name="T">Type of data contained in the response.</typeparam>
         /// <param name="requestUrl">The relative url the request is sent to.</param>
         /// <param name="args">Optional argument passed as querystring parameters.</param>
-        /// <param name="apiCallCost">Cost of the query. Used to limit API calling rate.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="requestUrl"/> is <c>null</c>.</exception>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaResponse">There was a problem with the QuadrigaCX API call.</exception>
-        public async Task<QuadrigaResponse<T>> QueryPublic<T>(string requestUrl, Dictionary<string, string> args = null)
+        public async Task<T> QueryPublic<T>(string requestUrl, Dictionary<string, string> args = null)
         {
             if (requestUrl == null)
                 throw new ArgumentNullException(nameof(requestUrl));
@@ -94,12 +93,11 @@ namespace QuadrigaCX.Api
         /// <typeparam name="T">Type of data contained in the response.</typeparam>
         /// <param name="requestUrl">The relative url the request is sent to.</param>
         /// <param name="args">Optional arguments passed as form data.</param>
-        /// <param name="apiCallCost">Cost of the query. Used to limit API calling rate.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="requestUrl"/> is <c>null</c>.</exception>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
-        public async Task<QuadrigaResponse<T>> QueryPrivate<T>(string requestUrl, Dictionary<string, string> args = null)
+        public async Task<T> QueryPrivate<T>(string requestUrl, Dictionary<string, string> args = null)
         {
             if (requestUrl == null)
                 throw new ArgumentNullException(nameof(requestUrl));
@@ -159,7 +157,7 @@ namespace QuadrigaCX.Api
         /// </summary>
         private Func<Task<long>> GetNonce { get; set; } = () => Task.FromResult(DateTime.UtcNow.Ticks);
 
-        private async Task<QuadrigaResponse<T>> SendRequest<T>(HttpRequestMessage req)
+        private async Task<T> SendRequest<T>(HttpRequestMessage req)
         {
             var reqCtx = new RequestContext
             {
@@ -181,30 +179,30 @@ namespace QuadrigaCX.Api
             string jsonContent = await resCtx.HttpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             // REVIEW:  See if there's a better way of deserializing either an object or an array of objects.
-            var result = new QuadrigaResponse<T>();
+            var response = new QuadrigaResponse<T>();
 
             if (typeof(T).BaseType != typeof(Array))
             {
-                result = JsonConvert.DeserializeObject<QuadrigaResponse<T>>(jsonContent, JsonSettings);
+                response.Result = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
             }
 
-            result.RawJson = jsonContent;
+            //response.RawJson = jsonContent;
 
             // Throw API-level error.
-            if (result.Error != null)
+            if (response.Error != null)
             {
-                throw new QuadrigaException(result.Error, "There was a problem with a response from QuadrigaCX.");
+                throw new QuadrigaException(response.Error, "There was a problem with a response from QuadrigaCX.");
             }
 
-            result.Result = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
+            response.Result = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
 
             // Throw API-level error.
-            if (result.Error != null)
+            if (response.Error != null)
             {
-                throw new QuadrigaException(result.Error, "There was a problem with a response from QuadrigaCX.");
+                throw new QuadrigaException(response.Error, "There was a problem with a response from QuadrigaCX.");
             }
 
-            return result;
+            return response.Result;
         }
 
         private static string UrlEncode(Dictionary<string, string> args) => string.Join(

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuadrigaCX.Api", "QuadrigaCX.Api\QuadrigaCX.Api.csproj", "{84A543AD-5A2B-4B50-BC87-02C3CA862533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadrigaCX.Api", "QuadrigaCX.Api\QuadrigaCX.Api.csproj", "{84A543AD-5A2B-4B50-BC87-02C3CA862533}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{EEDB2691-14BC-4769-9EEF-3E7017066014}"
 	ProjectSection(SolutionItems) = preProject

@@ -18,9 +18,7 @@ Contribute to this project by sending some XɃT my way:  3HwDqamKd6pcjzPF7QnLU1X
 
 ```cs
 using QuadrigaCX.Api;
-using QuadrigaCX.Api.Models;
 using System;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
@@ -30,22 +28,18 @@ namespace ConsoleApp1
         {
             Console.WriteLine("Hello QuadrigaCX!");
 
-            QuadrigaClient client = new QuadrigaClient();
-            Task<QuadrigaResponse<TickerInfo>> ticker = client.GetTickerInformation("btc_cad");
-
-            Console.WriteLine(ticker.Result.RawJson);
-
-            decimal ask = ticker.Result.Ask;
-            decimal bid = ticker.Result.Bid;
-            Console.WriteLine(string.Format("Spread = {0}", ask - bid));
+            using (QuadrigaClient client = new QuadrigaClient())
+            {
+                var res = client.GetTickerInformation("btc_cad").Result;
+                Console.WriteLine(string.Format("Bid = {0}, Ask = {1}, Spread = {2}", res.Bid, res.Ask, res.Ask - res.Bid));
+            }
 
             Console.ReadKey();
         }
     }
 }
 
-//Hello QuadrigaCX!
-//{"high":"12249.98","last":"12189.99","timestamp":"1520992505","volume":"378.10630916","vwap":"12005.54209284","low":"11921.00","ask":"12150.00","bid":"12000.00"}
-//Spread = 150.00
 
+//Hello QuadrigaCX!
+//Bid = 10914.00, Ask = 10998.00, Spread = 84.00
 ```
