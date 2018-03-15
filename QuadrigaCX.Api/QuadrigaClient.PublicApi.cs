@@ -13,9 +13,9 @@ namespace QuadrigaCX.Api
         /// <returns>Trading information from the specified book.</returns>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
-        public Task<TickerInfo> GetTickerInformation(string book)
+        public async Task<TickerInfo> GetTickerInformationAsync(string book)
         {
-            return QueryPublic<TickerInfo>(
+            return await QueryPublicAsync<TickerInfo>(
                 "ticker",
                 new Dictionary<string, string>(1)
                 {
@@ -32,9 +32,9 @@ namespace QuadrigaCX.Api
         /// <returns>List of all open orders.</returns>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
-        public Task<OrderBook> GetOrderBook(string book = "btc_cad", bool group = true)
+        public async Task<OrderBook> GetOrderBookAsync(string book = "btc_cad", bool group = true)
         {
-            return QueryPublic<OrderBook>(
+            return await QueryPublicAsync<OrderBook>(
                 "order_book",
                 new Dictionary<string, string>(2)
                 {
@@ -52,9 +52,9 @@ namespace QuadrigaCX.Api
         /// <returns>List of recent trades.</returns>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
-        public Task<Transaction[]> GetTransactions(string book = "btc_cad", string time = "hour")
+        public async Task<Transaction[]> GetTransactionsAsync(string book = "btc_cad", string time = "hour")
         {
-            return QueryPublic<Transaction[]>(
+            return await QueryPublicAsync<Transaction[]>(
                 "transactions",
                 new Dictionary<string, string>(2)
                 {

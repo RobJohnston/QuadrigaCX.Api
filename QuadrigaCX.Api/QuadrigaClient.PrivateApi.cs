@@ -13,9 +13,9 @@ namespace QuadrigaCX.Api
         /// Get account balance.
         /// </summary>
         /// <returns>Returns balances for all currencies.</returns>
-        public Task<AccountBalance> GetAccountBalance()
+        public async Task<AccountBalance> GetAccountBalanceAsync()
         {
-            return QueryPrivate<AccountBalance>(
+            return await QueryPrivateAsync<AccountBalance>(
                 "balance",
                 null
             );
@@ -29,9 +29,9 @@ namespace QuadrigaCX.Api
         /// <param name="sort">Sorting by date and time (asc - ascending; desc - descending). Default: desc.</param>
         /// <param name="book">Otional, if not specified, will default to btc_cad</param>
         /// <returns></returns>
-        public Task<UserTransaction[]> GetUserTransactions(int offset = 0, int limit = 50, string sort = "desc", string book = "btc_cad")
+        public async Task<UserTransaction[]> GetUserTransactionsAsync(int offset = 0, int limit = 50, string sort = "desc", string book = "btc_cad")
         {
-            return QueryPrivate<UserTransaction[]>(
+            return await QueryPrivateAsync<UserTransaction[]>(
                 "user_transactions",
                 new Dictionary<string, string>(4)
                 {
@@ -48,9 +48,9 @@ namespace QuadrigaCX.Api
         /// </summary>
         /// <param name="book">Optional, if not specified, will default to btc_cad</param>
         /// <returns></returns>
-        public Task<Order[]> GetOpenOrders(string book = "btc_cad")
+        public async Task<Order[]> GetOpenOrdersAsync(string book = "btc_cad")
         {
-            return QueryPrivate<Order[]>(
+            return await QueryPrivateAsync<Order[]>(
                 "open_orders",
                 new Dictionary<string, string>(1)
                 {
@@ -64,9 +64,9 @@ namespace QuadrigaCX.Api
         /// </summary>
         /// <param name="id">A single 64 character long hexadecimal string taken from the list of orders.</param>
         /// <returns></returns>
-        public Task<Order[]> LookupOrder(string id)
+        public async Task<Order[]> LookupOrderAsync(string id)
         {
-            return LookupOrder(new string[] { id });
+            return await LookupOrderAsync(new string[] { id });
         }
 
         /// <summary>
@@ -74,9 +74,9 @@ namespace QuadrigaCX.Api
         /// </summary>
         /// <param name="ids">An array of 64 character long hexadecimal strings taken from the list of orders.</param>
         /// <returns></returns>
-        public Task<Order[]> LookupOrder(string[] ids)
+        public async Task<Order[]> LookupOrderAsync(string[] ids)
         {
-            return QueryPrivate<Order[]>(
+            return await QueryPrivateAsync<Order[]>(
                 "lookup_order",
                 new Dictionary<string, string>(1)
                 {
@@ -89,17 +89,17 @@ namespace QuadrigaCX.Api
 
         #region Trading
 
-        public Task<bool> CancelOrder(string id)
+        public async Task<bool> CancelOrderAsync(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Order[]> AddMarketOrder(OrderType orderType, decimal amount, string book = "btc_cad")
+        public async Task<Order[]> AddMarketOrderAsync(OrderType orderType, decimal amount, string book = "btc_cad")
         {
             throw new NotImplementedException();
         }
 
-        public Task<Order> AddLimitOrder(OrderType orderType, decimal amount, decimal price, string book = "btc_cad")
+        public async Task<Order> AddLimitOrderAsync(OrderType orderType, decimal amount, decimal price, string book = "btc_cad")
         {
             throw new NotImplementedException();
         }
@@ -108,12 +108,12 @@ namespace QuadrigaCX.Api
 
         #region Deposit and withdrawal
 
-        public Task<string> GetDepositAddress(string currency)
+        public async Task<string> GetDepositAddressAsync(string currency)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Withdraw(decimal amount, string address, string currency)
+        public async Task<bool> WithdrawAsync(decimal amount, string address, string currency)
         {
             //TODO:  Look at validating the address.  See https://rosettacode.org/wiki/Bitcoin/address_validation#C.23
 

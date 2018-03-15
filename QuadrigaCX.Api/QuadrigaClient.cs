@@ -69,7 +69,7 @@ namespace QuadrigaCX.Api
         /// <exception cref="ArgumentNullException"><paramref name="requestUrl"/> is <c>null</c>.</exception>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaResponse">There was a problem with the QuadrigaCX API call.</exception>
-        public async Task<T> QueryPublic<T>(string requestUrl, Dictionary<string, string> args = null)
+        public async Task<T> QueryPublicAsync<T>(string requestUrl, Dictionary<string, string> args = null)
         {
             if (requestUrl == null)
                 throw new ArgumentNullException(nameof(requestUrl));
@@ -84,7 +84,7 @@ namespace QuadrigaCX.Api
             var req = new HttpRequestMessage(HttpMethod.Get, address);
 
             // Send request and deserialize response.
-            return await SendRequest<T>(req).ConfigureAwait(false);
+            return await SendRequestAsync<T>(req).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace QuadrigaCX.Api
         /// <exception cref="ArgumentNullException"><paramref name="requestUrl"/> is <c>null</c>.</exception>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
-        public async Task<T> QueryPrivate<T>(string requestUrl, Dictionary<string, string> args = null)
+        public async Task<T> QueryPrivateAsync<T>(string requestUrl, Dictionary<string, string> args = null)
         {
             if (requestUrl == null)
                 throw new ArgumentNullException(nameof(requestUrl));
@@ -126,7 +126,7 @@ namespace QuadrigaCX.Api
             };
 
             // Send request and deserialize response.
-            return await SendRequest<T>(req).ConfigureAwait(false);
+            return await SendRequestAsync<T>(req).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace QuadrigaCX.Api
         /// </summary>
         private Func<Task<long>> GetNonce { get; set; } = () => Task.FromResult(DateTime.UtcNow.Ticks);
 
-        private async Task<T> SendRequest<T>(HttpRequestMessage req)
+        private async Task<T> SendRequestAsync<T>(HttpRequestMessage req)
         {
             var reqCtx = new RequestContext
             {
