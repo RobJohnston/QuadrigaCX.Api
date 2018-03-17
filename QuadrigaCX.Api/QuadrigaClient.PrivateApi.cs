@@ -220,6 +220,11 @@ namespace QuadrigaCX.Api
 
         #endregion
 
+        /// <summary>
+        /// Get the name of a currency as required for the path of the deposit or withdraw addresses.
+        /// </summary>
+        /// <param name="currencySymbol">The currency symbol.</param>
+        /// <returns></returns>
         private static string GetCurrencyName(string currencySymbol)
         {
             string currencyName;

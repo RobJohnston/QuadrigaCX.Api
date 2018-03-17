@@ -13,9 +13,18 @@ using System.Threading.Tasks;
 namespace QuadrigaCX.Api
 {
     /// <summary>
-    /// A strongly typed thread-safe async HTTP client for QuadrigaCX bitcoin exchange API v2.
+    /// A strongly typed thread-safe async HTTP client for Quadriga Coin eXchange API v2.
+    /// The QuadrigaCX API allows you to integrate the QuadrigaCX trading platform with third party applications, 
+    /// such as trading applications, charting programs, point of sale systems, and much more.
     /// <para>https://www.quadrigacx.com/api_info</para>
     /// </summary>
+    /// <remarks>
+    /// QuadrigaCX notations:
+    ///   Major denotes any of the Cryptocurrencies such as Bitcoin (BTC) or any other cryptocurrency which is added to
+    ///   the QuadrigaCX trading platform in the future.
+    ///   Minor denotes fiat currencies such as Canadian Dollars(CAD), etc.
+    ///   An order book is always referred to in the API as "Major_Minor". For example: "btc_cad".
+    /// </remarks>
     public partial class QuadrigaClient : IDisposable
     {
         private int _clientId;

@@ -116,21 +116,21 @@ namespace QuadrigaCX.Api.Models
 
         #region Undocumented currencies
 
-        // ETC = Ethereum Classic 
-        [JsonProperty("etc_available")]
-        public decimal EtcAvailable { get; set; }
-        [JsonProperty("etc_reserved")]
-        public decimal EtcReserved { get; set; }
-        [JsonProperty("etc_balance")]
-        public decimal EtcBalance { get; set; }
+        //// ETC = Ethereum Classic 
+        //[JsonProperty("etc_available")]
+        //public decimal EtcAvailable { get; set; }
+        //[JsonProperty("etc_reserved")]
+        //public decimal EtcReserved { get; set; }
+        //[JsonProperty("etc_balance")]
+        //public decimal EtcBalance { get; set; }
 
-        // XAU = Gold
-        [JsonProperty("xau_available")]
-        public decimal XauAvailable { get; set; }
-        [JsonProperty("xau_reserved")]
-        public decimal XauReserved { get; set; }
-        [JsonProperty("xau_balance")]
-        public decimal XauBalance { get; set; }
+        //// XAU = Gold
+        //[JsonProperty("xau_available")]
+        //public decimal XauAvailable { get; set; }
+        //[JsonProperty("xau_reserved")]
+        //public decimal XauReserved { get; set; }
+        //[JsonProperty("xau_balance")]
+        //public decimal XauBalance { get; set; }
 
         #endregion
 
