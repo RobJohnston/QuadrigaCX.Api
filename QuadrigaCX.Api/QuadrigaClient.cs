@@ -193,22 +193,22 @@ namespace QuadrigaCX.Api
             if (typeof(T).BaseType != typeof(Array))
             {
                 response.Result = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
+
+                // Throw API-level error.
+                if (response.Error != null)
+                {
+                    throw new QuadrigaException(response.Error);
+                }
             }
 
             //response.RawJson = jsonContent;
-
-            // Throw API-level error.
-            if (response.Error != null)
-            {
-                throw new QuadrigaException(response.Error, "There was a problem with a response from QuadrigaCX.");
-            }
-
+            
             response.Result = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
 
             // Throw API-level error.
             if (response.Error != null)
             {
-                throw new QuadrigaException(response.Error, "There was a problem with a response from QuadrigaCX.");
+                throw new QuadrigaException(response.Error);
             }
 
             return response.Result;
