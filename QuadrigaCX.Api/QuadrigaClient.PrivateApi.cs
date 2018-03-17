@@ -48,9 +48,9 @@ namespace QuadrigaCX.Api
         /// </summary>
         /// <param name="book">Optional, if not specified, will default to btc_cad</param>
         /// <returns></returns>
-        public async Task<Order[]> GetOpenOrdersAsync(string book = "btc_cad")
+        public async Task<OpenOrder[]> GetOpenOrdersAsync(string book = "btc_cad")
         {
-            return await QueryPrivateAsync<Order[]>(
+            return await QueryPrivateAsync<OpenOrder[]>(
                 "open_orders",
                 new Dictionary<string, string>(1)
                 {
@@ -91,35 +91,161 @@ namespace QuadrigaCX.Api
 
         public async Task<bool> CancelOrderAsync(string id)
         {
-            throw new NotImplementedException();
+            return await QueryPrivateAsync<bool>(
+                "cancel_order",
+                new Dictionary<string, string>(1)
+                {
+                    ["id"] = id
+                }
+            );
         }
 
-        public async Task<Order[]> AddMarketOrderAsync(OrderType orderType, decimal amount, string book = "btc_cad")
+        /// <summary>
+        /// Buy order - limit order.
+        /// </summary>
+        /// <param name="amount">Amount of major currency.</param>
+        /// <param name="price">Price to buy at.</param>
+        /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
+        /// <returns>LimitOrder</returns>
+        public async Task<LimitOrder> Buy(decimal amount, decimal price, string book = "btc_cad")
         {
-            throw new NotImplementedException();
+            return await QueryPrivateAsync<LimitOrder>(
+                "buy",
+                new Dictionary<string, string>(3)
+                {
+                    ["amount"] = amount.ToString(_culture),
+                    ["price"] = price.ToString(_culture),
+                    ["book"] = book
+                }
+            );
         }
 
-        public async Task<Order> AddLimitOrderAsync(OrderType orderType, decimal amount, decimal price, string book = "btc_cad")
+        /// <summary>
+        /// Buy order - market order.
+        /// </summary>
+        /// <param name="amount">Amount of major currency to buy.</param>
+        /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
+        /// <returns>MarketOrder</returns>
+        public async Task<MarketOrder> Buy(decimal amount, string book = "btc_cad")
         {
-            throw new NotImplementedException();
+            return await QueryPrivateAsync<MarketOrder>(
+                "buy",
+                new Dictionary<string, string>(2)
+                {
+                    ["amount"] = amount.ToString(_culture),
+                    ["book"] = book
+                }
+            );
+        }
+
+        /// <summary>
+        /// Sell order - limit order.
+        /// </summary>
+        /// <param name="amount">Amount of major currency.</param>
+        /// <param name="price">Price to sell at.</param>
+        /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
+        /// <returns>LimitOrder</returns>
+        public async Task<LimitOrder> Sell(decimal amount, decimal price, string book = "btc_cad")
+        {
+            return await QueryPrivateAsync<LimitOrder>(
+                "sell",
+                new Dictionary<string, string>(3)
+                {
+                    ["amount"] = amount.ToString(_culture),
+                    ["price"] = price.ToString(_culture),
+                    ["book"] = book
+                }
+            );
+        }
+
+        /// <summary>
+        /// Sell order - market order.
+        /// </summary>
+        /// <param name="amount">Amount of major currency to sell.</param>
+        /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
+        /// <returns>MarketOrder</returns>
+        public async Task<MarketOrder> Sell(decimal amount, string book = "btc_cad")
+        {
+            return await QueryPrivateAsync<MarketOrder>(
+                "sell",
+                new Dictionary<string, string>(2)
+                {
+                    ["amount"] = amount.ToString(_culture),
+                    ["book"] = book
+                }
+            );
         }
 
         #endregion
 
         #region Deposit and withdrawal
 
-        public async Task<string> GetDepositAddressAsync(string currency)
+        /// <summary>
+        /// Returns a deposit address for funding your account.
+        /// </summary>
+        /// <param name="currencySymbol">A 3-letter currency code (BTC, BCH, BTG, LTC, ETH).</param>
+        /// <returns></returns>
+        public async Task<string> GetDepositAddressAsync(string currencySymbol)
         {
-            throw new NotImplementedException();
+            string currencyName = GetCurrencyName(currencySymbol);
+
+            return await QueryPrivateAsync<string>(
+                string.Format("{0}_deposit_address", currencyName),
+                null
+            );
         }
 
-        public async Task<bool> WithdrawAsync(decimal amount, string address, string currency)
+        /// <summary>
+        /// Withdraw
+        /// </summary>
+        /// <param name="amount">The amount to withdraw.</param>
+        /// <param name="address">The address-to send the amount.</param>
+        /// <param name="currencySymbol">A 3 letter currency code (BTC, BCH, BTG, LTC, ETH).</param>
+        /// <returns>OK or error.</returns>
+        public async Task<bool> WithdrawAsync(decimal amount, string address, string currencySymbol)
         {
             //TODO:  Look at validating the address.  See https://rosettacode.org/wiki/Bitcoin/address_validation#C.23
 
-            throw new NotImplementedException();
+            string currencyName = GetCurrencyName(currencySymbol);
+
+            return await QueryPrivateAsync<bool>(
+                string.Format("{0}_withdrawal", currencyName),
+                new Dictionary<string, string>(2)
+                {
+                    ["amount"] = amount.ToString(_culture),
+                    ["address"] = address
+                }
+            );
         }
 
         #endregion
+
+        private static string GetCurrencyName(string currencySymbol)
+        {
+            string currencyName;
+
+            switch (currencySymbol.ToLowerInvariant())
+            {
+                case "btc":
+                    currencyName = "bitcoin";
+                    break;
+                case "bch":
+                    currencyName = "bitcoincash";
+                    break;
+                case "btg":
+                    currencyName = "bitcoingold";
+                    break;
+                case "ltc":
+                    currencyName = "litecoin";
+                    break;
+                case "eth":
+                    currencyName = "ether";
+                    break;
+                default:
+                    throw new ArgumentException("Invalid currency symbol", currencySymbol);
+            }
+
+            return currencyName;
+        }
     }
 }

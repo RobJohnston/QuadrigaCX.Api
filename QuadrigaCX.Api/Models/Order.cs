@@ -6,7 +6,7 @@ namespace QuadrigaCX.Api.Models
     public class Order
     {
         /// <summary>
-        /// Order ID.
+        /// The order id passed to that function.
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -52,19 +52,5 @@ namespace QuadrigaCX.Api.Models
         /// </summary>
         [JsonProperty("updated")]
         public DateTime? Updated { get; set; }
-    }
-
-    public enum OrderStatus
-    {
-        Cancelled = -1,
-        Active = 0,
-        PartiallyFilled = 1,
-        Complete = 2
-    }
-
-    public enum OrderType
-    {
-        Buy = 0,
-        Sell = 1
     }
 }
