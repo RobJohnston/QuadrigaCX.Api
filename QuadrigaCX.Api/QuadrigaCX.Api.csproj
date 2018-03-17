@@ -17,10 +17,12 @@
       * Added the trading, deposit, and withdrawal functionality (not tested at all).
 
       Contribute to this project by sending some XɃT my way: 3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
-      
-      [Sign-up with QuadrigaCX](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l)
+
+      Sign-up with QuadrigaCX:  https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l
+
+Full release notes:  https://github.com/RobJohnston/QuadrigaCX.Api/releases
     </PackageReleaseNotes>
-    <PackageTags>C#; netstandard; async; api-client; cryptocurrency; bitcoin; quadrigacx</PackageTags>
+    <PackageTags>api-client; cryptocurrency; bitcoin; litecoin; ether; quadrigacx</PackageTags>
     <RepositoryUrl>https://github.com/RobJohnston/QuadrigaCX.Api</RepositoryUrl>
   </PropertyGroup>
 
