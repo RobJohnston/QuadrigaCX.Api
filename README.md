@@ -31,7 +31,11 @@ namespace ConsoleApp1
             using (QuadrigaClient client = new QuadrigaClient())
             {
                 var res = client.GetTickerInformation("btc_cad").Result;
-                Console.WriteLine(string.Format("Bid = {0}, Ask = {1}, Spread = {2}", res.Bid, res.Ask, res.Ask - res.Bid));
+
+                if (res.Error == null)
+                    Console.WriteLine(string.Format("Bid = {0}, Ask = {1}", res.Bid, res.Ask));
+                else
+                    Console.WriteLine(string.Format("Error: {0} - {1}", res.Error.Code, res.Error.Message));
             }
 
             Console.ReadKey();

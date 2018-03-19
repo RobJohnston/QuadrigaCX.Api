@@ -3,7 +3,7 @@ using System;
 
 namespace QuadrigaCX.Api.Models
 {
-    public class Order
+    public class Order : QuadrigaResponse
     {
         /// <summary>
         /// The order id passed to that function.

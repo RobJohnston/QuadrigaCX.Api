@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace QuadrigaCX.Api.Models
 {
-    public class AccountBalance
+    public class AccountBalance : QuadrigaResponse
     {
         #region BTC
 

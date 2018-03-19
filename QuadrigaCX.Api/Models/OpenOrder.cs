@@ -3,7 +3,7 @@ using System;
 
 namespace QuadrigaCX.Api.Models
 {
-    public class OpenOrder
+    public class OpenOrder : QuadrigaResponse
     {
         /// <summary>
         /// Order ID.

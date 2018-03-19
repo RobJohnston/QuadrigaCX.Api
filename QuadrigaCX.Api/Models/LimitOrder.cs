@@ -3,7 +3,7 @@ using System;
 
 namespace QuadrigaCX.Api.Models
 {
-    public class LimitOrder
+    public class LimitOrder : QuadrigaResponse
     {
         /// <summary>
         /// Order ID.

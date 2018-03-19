@@ -11,17 +11,17 @@
     <Copyright>Copyright © 2018 Rob Johnston</Copyright>
     <PackageLicenseUrl>https://github.com/RobJohnston/QuadrigaCX.Api/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/RobJohnston/QuadrigaCX.Api</PackageProjectUrl>
-    <PackageReleaseNotes>
-      This is an alpha version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!
+    <PackageReleaseNotes>This is an alpha version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!
 
       * Added the trading, deposit, and withdrawal functionality (not tested at all).
+      * Return the error as a property of the object being retrieved instead of throwing an exception.
 
-      Contribute to this project by sending some XɃT my way: 3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
+ Contribute to this project by sending some XɃT my way: 3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
 
-      Sign-up with QuadrigaCX:  https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l
+Sign-up with QuadrigaCX:  https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l
 
 Full release notes:  https://github.com/RobJohnston/QuadrigaCX.Api/releases
-    </PackageReleaseNotes>
+</PackageReleaseNotes>
     <PackageTags>api-client; cryptocurrency; bitcoin; litecoin; ether; quadrigacx</PackageTags>
     <RepositoryUrl>https://github.com/RobJohnston/QuadrigaCX.Api</RepositoryUrl>
   </PropertyGroup>

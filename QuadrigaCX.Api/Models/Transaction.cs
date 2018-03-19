@@ -5,7 +5,7 @@ namespace QuadrigaCX.Api.Models
     /// <summary>
     /// A market trade.
     /// </summary>
-    public class Transaction
+    public class Transaction : QuadrigaResponse
     {
         /// <summary>
         /// Amount of trade.

@@ -3,7 +3,7 @@ using System;
 
 namespace QuadrigaCX.Api.Models
 {
-    public class UserTransaction
+    public class UserTransaction : QuadrigaResponse
     {
         /// <summary>
         /// Date and time.

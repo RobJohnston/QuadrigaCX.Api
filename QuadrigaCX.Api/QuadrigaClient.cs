@@ -186,32 +186,9 @@ namespace QuadrigaCX.Api
 
             // Deserialize response.
             string jsonContent = await resCtx.HttpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var response = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
 
-            // REVIEW:  See if there's a better way of deserializing either an object or an array of objects.
-            var response = new QuadrigaResponse<T>();
-
-            if (typeof(T).BaseType != typeof(Array))
-            {
-                response.Result = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
-
-                // Throw API-level error.
-                if (response.Error != null)
-                {
-                    throw new QuadrigaException(response.Error);
-                }
-            }
-
-            //response.RawJson = jsonContent;
-            
-            response.Result = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
-
-            // Throw API-level error.
-            if (response.Error != null)
-            {
-                throw new QuadrigaException(response.Error);
-            }
-
-            return response.Result;
+            return response;
         }
 
         private static string UrlEncode(Dictionary<string, string> args) => string.Join(
