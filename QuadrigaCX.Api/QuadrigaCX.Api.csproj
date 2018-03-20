@@ -5,7 +5,7 @@
     
     <PackageId>QuadrigaCX.Api</PackageId>
     <Title>QuadrigaCX.Api</Title>
-    <Version>0.0.3-alpha</Version>
+    <Version>0.0.4-alpha</Version>
     <Authors>rob_johnston</Authors>
     <Description>A .Net Standard client for the QuadrigaCX cryptocurrency API.</Description>
     <Copyright>Copyright © 2018 Rob Johnston</Copyright>
@@ -13,8 +13,7 @@
     <PackageProjectUrl>https://github.com/RobJohnston/QuadrigaCX.Api</PackageProjectUrl>
     <PackageReleaseNotes>This is an alpha version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!
 
-      * Added the trading, deposit, and withdrawal functionality (not tested at all).
-      * Return the error as a property of the object being retrieved instead of throwing an exception.
+      * Remove error property and throw exception if error is returned from API.
 
  Contribute to this project by sending some XɃT my way: 3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
 
