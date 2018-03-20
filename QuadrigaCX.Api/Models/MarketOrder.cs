@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QuadrigaCX.Api.Models
 {
-    public class MarketOrder : QuadrigaResponse
+    public class MarketOrder
     {
         /// <summary>
         /// The total amount of the major currency purchased or 

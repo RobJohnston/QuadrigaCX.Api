@@ -30,12 +30,19 @@ namespace ConsoleApp1
 
             using (QuadrigaClient client = new QuadrigaClient())
             {
-                var res = client.GetTickerInformation("btc_cad").Result;
-
-                if (res.Error == null)
+                try
+                {
+                    var res = client.GetTickerInformationAsync("btc_cad").GetAwaiter().GetResult();
                     Console.WriteLine(string.Format("Bid = {0}, Ask = {1}", res.Bid, res.Ask));
-                else
-                    Console.WriteLine(string.Format("Error: {0} - {1}", res.Error.Code, res.Error.Message));
+                }
+                catch (QuadrigaException qex)
+                {
+                    Console.WriteLine(string.Format("Error: {0} - {1}", qex.Code, qex.Message));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             Console.ReadKey();
@@ -45,5 +52,5 @@ namespace ConsoleApp1
 
 
 //Hello QuadrigaCX!
-//Bid = 10914.00, Ask = 10998.00, Spread = 84.00
+//Bid = 10914.00, Ask = 10998.00
 ```

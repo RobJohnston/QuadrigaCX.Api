@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QuadrigaCX.Api.Models
 {
-    public class OrderBook : QuadrigaResponse
+    public class OrderBook
     {
         /// <summary>
         /// Unix timestamp.

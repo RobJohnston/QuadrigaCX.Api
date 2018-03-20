@@ -5,7 +5,7 @@ namespace QuadrigaCX.Api.Models
     /// <summary>
     /// Trading information from a book.
     /// </summary>
-    public class TickerInfo : QuadrigaResponse
+    public class TickerInfo
     {
         /// <summary>
         /// Last 24 hours price high.

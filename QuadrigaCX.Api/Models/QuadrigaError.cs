@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace QuadrigaCX.Api
+namespace QuadrigaCX.Api.Models
 {
     /// <summary>
-    /// Represents the response from QuadrigaCX API which could be the expected result or an error.
+    /// Represents the error returned from the API.
     /// </summary>
-    public abstract class QuadrigaResponse
+    public class QuadrigaError
     {
         /// <summary>
         /// Gets or sets errors of a request.
@@ -15,7 +15,7 @@ namespace QuadrigaCX.Api
     }
 
     /// <summary>
-    /// Represents the error returned from the API.
+    /// The error is composed of a Code and a Message.
     /// </summary>
     /// <example>
     /// {"error":{"code":101,"message":"Invalid API Code or Invalid Signature"}}

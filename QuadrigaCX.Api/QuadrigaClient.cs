@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using QuadrigaCX.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -77,7 +79,7 @@ namespace QuadrigaCX.Api
         /// <returns>The task object representing the asynchronous operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="requestUrl"/> is <c>null</c>.</exception>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
-        /// <exception cref="QuadrigaResponse">There was a problem with the QuadrigaCX API call.</exception>
+        /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
         public async Task<T> QueryPublicAsync<T>(string requestUrl, Dictionary<string, string> args = null)
         {
             if (requestUrl == null)
@@ -188,6 +190,8 @@ namespace QuadrigaCX.Api
             string jsonContent = await resCtx.HttpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
             var response = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
 
+            ProcessError(jsonContent);
+
             return response;
         }
 
@@ -195,6 +199,50 @@ namespace QuadrigaCX.Api
             "&",
             args.Where(x => x.Value != null).Select(x => x.Key + "=" + WebUtility.UrlEncode(x.Value))
         );
+
+        /// <summary>
+        /// Determine if the API returned and error and throw it if it did.
+        /// </summary>
+        private void ProcessError(string jsonContent)
+        {
+            var token = JToken.Parse(jsonContent);
+
+            if (token is JArray)
+            {
+                IEnumerable<QuadrigaError> responses = token.ToObject<List<QuadrigaError>>();
+                var exceptions = new List<Exception>();
+
+                foreach(var response in responses)
+                {
+                    var exception = new QuadrigaException(response.Error.Message)
+                    {
+                        Code = response.Error.Code
+                    };
+
+                    exceptions.Add(exception);
+                }
+
+                if (exceptions.Count == 1)
+                    throw exceptions.First();
+                else if (exceptions.Count > 1)
+                    throw new QuadrigaAggregateException("Multiple errors occurred.", exceptions);
+            }
+
+            else //if (token is JObject)
+            {
+                var response = token.ToObject<QuadrigaError>();
+
+                if (response.Error != null)
+                {
+                    var exception = new QuadrigaException(response.Error.Message)
+                    {
+                        Code = response.Error.Code
+                    };
+
+                    throw exception;
+                }
+            }
+        }
 
         #endregion
     }
