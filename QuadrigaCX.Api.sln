@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadrigaCX.Api", "QuadrigaC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{EEDB2691-14BC-4769-9EEF-3E7017066014}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
 		LICENSE = LICENSE
 		QCX 300x250 White CDN Sign Up.jpg = QCX 300x250 White CDN Sign Up.jpg
 		README.md = README.md
