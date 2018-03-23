@@ -15,17 +15,18 @@ using System.Threading.Tasks;
 namespace QuadrigaCX.Api
 {
     /// <summary>
-    /// A strongly typed thread-safe async HTTP client for Quadriga Coin eXchange API v2.
+    /// A strongly typed thread-safe async HTTP client for the Quadriga Coin eXchange API v2.
+    /// 
     /// The QuadrigaCX API allows you to integrate the QuadrigaCX trading platform with third party applications, 
     /// such as trading applications, charting programs, point of sale systems, and much more.
     /// <para>https://www.quadrigacx.com/api_info</para>
     /// </summary>
     /// <remarks>
     /// QuadrigaCX notations:
-    ///   Major denotes any of the Cryptocurrencies such as Bitcoin (BTC) or any other cryptocurrency which is added to
-    ///   the QuadrigaCX trading platform in the future.
-    ///   Minor denotes fiat currencies such as Canadian Dollars(CAD), etc.
-    ///   An order book is always referred to in the API as "Major_Minor". For example: "btc_cad".
+    ///   <para>Major denotes any of the Cryptocurrencies such as Bitcoin (BTC) or any other cryptocurrency which is added to
+    ///   the QuadrigaCX trading platform in the future.</para>
+    ///   <para>Minor denotes fiat currencies such as Canadian Dollars (CAD), etc.</para>
+    ///   <para>An order book is always referred to in the API as "Major_Minor". For example: "btc_cad".</para>
     /// </remarks>
     public partial class QuadrigaClient : IDisposable
     {
@@ -46,7 +47,7 @@ namespace QuadrigaCX.Api
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="QuadrigaClient"/> class.
+        /// Initializes a new instance of the <see cref="QuadrigaClient"/> class for calling public functions.
         /// </summary>
         public QuadrigaClient()
         {
@@ -56,7 +57,7 @@ namespace QuadrigaCX.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="QuadrigaClient"/> class using an API key and secret.
+        /// Initializes a new instance of the <see cref="QuadrigaClient"/> class for calling private functions.
         /// </summary>
         /// <param name="clientId">The client ID.</param>
         /// <param name="apiKey">The API key.</param>
@@ -74,9 +75,10 @@ namespace QuadrigaCX.Api
         /// Sends a public GET request to the QuadrigaCX API as an asynchronous operation.
         /// </summary>
         /// <typeparam name="T">Type of data contained in the response.</typeparam>
-        /// <param name="requestUrl">The relative url the request is sent to.</param>
-        /// <param name="args">Optional argument passed as querystring parameters.</param>
+        /// <param name="requestUrl">The relative URL the request is sent to.</param>
+        /// <param name="args">Optional arguments passed as querystring parameters.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
+        /// <remarks>The <paramref name="requestUrl"/> is relative to https://api.quadrigacx.com/v2/</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="requestUrl"/> is <c>null</c>.</exception>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
@@ -102,9 +104,10 @@ namespace QuadrigaCX.Api
         /// Sends a private POST request to the QuadrigaCX API as an asynchronous operation.
         /// </summary>
         /// <typeparam name="T">Type of data contained in the response.</typeparam>
-        /// <param name="requestUrl">The relative url the request is sent to.</param>
+        /// <param name="requestUrl">The relative URL the request is sent to.</param>
         /// <param name="args">Optional arguments passed as form data.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
+        /// <remarks>The <paramref name="requestUrl"/> is relative to https://api.quadrigacx.com/v2/</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="requestUrl"/> is <c>null</c>.</exception>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
@@ -148,6 +151,10 @@ namespace QuadrigaCX.Api
 
         #region Private methods
 
+        /// <summary>
+        /// The signature has to be created using a concatenation of the nonce, your client id, the API key
+        /// and using the API Secret as key.
+        /// </summary>
         private string GenerateApiSignature(string nonce, string client, string key)
         {
             string signature;
@@ -207,7 +214,21 @@ namespace QuadrigaCX.Api
         {
             var token = JToken.Parse(jsonContent);
 
-            if (token is JArray)
+            if (token is JObject)
+            {
+                var response = token.ToObject<QuadrigaError>();
+
+                if (response.Error != null)
+                {
+                    var exception = new QuadrigaException(response.Error.Message)
+                    {
+                        Code = response.Error.Code
+                    };
+
+                    throw exception;
+                }
+            }
+            else if (token is JArray)
             {
                 IEnumerable<QuadrigaError> responses = token.ToObject<List<QuadrigaError>>();
                 var exceptions = new List<Exception>();
@@ -225,22 +246,7 @@ namespace QuadrigaCX.Api
                 if (exceptions.Count == 1)
                     throw exceptions.First();
                 else if (exceptions.Count > 1)
-                    throw new QuadrigaAggregateException("Multiple errors occurred.", exceptions);
-            }
-
-            else //if (token is JObject)
-            {
-                var response = token.ToObject<QuadrigaError>();
-
-                if (response.Error != null)
-                {
-                    var exception = new QuadrigaException(response.Error.Message)
-                    {
-                        Code = response.Error.Code
-                    };
-
-                    throw exception;
-                }
+                    throw new QuadrigaAggregateException(exceptions);
             }
         }
 

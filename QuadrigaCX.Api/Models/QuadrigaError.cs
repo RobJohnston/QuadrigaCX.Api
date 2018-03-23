@@ -3,7 +3,7 @@
 namespace QuadrigaCX.Api.Models
 {
     /// <summary>
-    /// Represents the error returned from the API.
+    /// Represents an error returned from the API.
     /// </summary>
     public class QuadrigaError
     {
@@ -15,15 +15,21 @@ namespace QuadrigaCX.Api.Models
     }
 
     /// <summary>
-    /// The error is composed of a Code and a Message.
+    /// Represents the properties found in the JSON error object returned by the API.
     /// </summary>
-    /// <example>
-    /// {"error":{"code":101,"message":"Invalid API Code or Invalid Signature"}}
-    /// </example>
+    /// <seealso cref="QuadrigaError"/>
     public class ErrorString
     {
+        /// <summary>
+        /// The error code.
+        /// </summary>
+        [JsonProperty("code")]
         public int Code { get; set; }
 
+        /// <summary>
+        /// A short message describing the error.
+        /// </summary>
+        [JsonProperty("message")]
         public string Message { get; set; }
     }
 }

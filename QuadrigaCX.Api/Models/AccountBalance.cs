@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace QuadrigaCX.Api.Models
 {
+    /// <summary>
+    /// Represents the account balance returned from <see cref="QuadrigaClient.GetAccountBalanceAsync"/>.
+    /// </summary>
     public class AccountBalance
     {
         #region BTC

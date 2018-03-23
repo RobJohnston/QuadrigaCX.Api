@@ -3,7 +3,7 @@
 namespace QuadrigaCX.Api.Models
 {
     /// <summary>
-    /// Trading information from a book.
+    /// Represent trading information from a book returned from <see cref="QuadrigaClient.GetTickerInformationAsync(string)"/>.
     /// </summary>
     public class TickerInfo
     {

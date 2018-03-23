@@ -3,6 +3,13 @@ using System;
 
 namespace QuadrigaCX.Api.Models
 {
+    /// <summary>
+    /// Represents a limit order returned from <see cref="QuadrigaClient.Buy(decimal, decimal, string)"/> 
+    /// or <see cref="QuadrigaClient.Sell(decimal, decimal, string)"/>.
+    /// </summary>
+    /// <seealso cref="MarketOrder"/>
+    /// <seealso cref="OpenOrder"/>
+    /// <seealso cref="Order"/>
     public class LimitOrder
     {
         /// <summary>

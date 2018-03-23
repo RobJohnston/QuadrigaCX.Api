@@ -3,6 +3,10 @@ using System;
 
 namespace QuadrigaCX.Api.Models
 {
+    /// <summary>
+    /// Represents a deposit, withdrawal, or trade returned from <see cref="QuadrigaClient.GetUserTransactionsAsync(int, int, string, string)"/>.
+    /// </summary>
+    /// <seealso cref="Transaction"/>
     public class UserTransaction
     {
         /// <summary>
@@ -26,6 +30,7 @@ namespace QuadrigaCX.Api.Models
         /// <summary>
         /// Deposit or withdrawal method.
         /// </summary>
+        /// <example>"Bitcoin", for deposit of BTC.</example>
         [JsonProperty("method")]
         public string Method { get; set; }
 
@@ -108,12 +113,5 @@ namespace QuadrigaCX.Api.Models
         /// </summary>
         [JsonProperty("rate")]
         public decimal? Rate { get; set; }
-    }
-
-    public enum UserTransactionType
-    {
-        Deposit = 0,
-        Withdrawal = 1,
-        MarketTrade = 2
     }
 }

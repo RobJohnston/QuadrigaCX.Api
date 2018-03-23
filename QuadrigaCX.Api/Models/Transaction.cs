@@ -3,8 +3,9 @@
 namespace QuadrigaCX.Api.Models
 {
     /// <summary>
-    /// A market trade.
+    /// Represents a market trade returned from <see cref="QuadrigaClient.GetTransactionsAsync(string, string)"/>.
     /// </summary>
+    /// <seealso cref="UserTransaction"/>
     public class Transaction
     {
         /// <summary>

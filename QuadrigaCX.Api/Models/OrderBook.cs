@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace QuadrigaCX.Api.Models
 {
+    /// <summary>
+    /// Represents an order book returned from <see cref="QuadrigaClient.GetOrderBookAsync(string, bool)"/>.
+    /// </summary>
     public class OrderBook
     {
         /// <summary>
@@ -25,6 +28,9 @@ namespace QuadrigaCX.Api.Models
         public List<OrderBookEntry> Asks { get; set; }
     }
 
+    /// <summary>
+    /// The price and amount of an open order.
+    /// </summary>
     [JsonConverter(typeof(JArrayToObjectConverter))]
     public class OrderBookEntry
     {

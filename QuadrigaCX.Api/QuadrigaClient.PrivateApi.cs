@@ -12,7 +12,7 @@ namespace QuadrigaCX.Api
         /// <summary>
         /// Get account balance.
         /// </summary>
-        /// <returns>Returns balances for all currencies.</returns>
+        /// <returns>All balances.</returns>
         public async Task<AccountBalance> GetAccountBalanceAsync()
         {
             return await QueryPrivateAsync<AccountBalance>(
@@ -28,7 +28,7 @@ namespace QuadrigaCX.Api
         /// <param name="limit">Limit result to that many transactions. Default: 50.</param>
         /// <param name="sort">Sorting by date and time (asc - ascending; desc - descending). Default: desc.</param>
         /// <param name="book">Otional, if not specified, will default to btc_cad</param>
-        /// <returns></returns>
+        /// <returns>An array of user transactions.</returns>
         public async Task<UserTransaction[]> GetUserTransactionsAsync(int offset = 0, int limit = 50, string sort = "desc", string book = "btc_cad")
         {
             return await QueryPrivateAsync<UserTransaction[]>(
@@ -44,10 +44,11 @@ namespace QuadrigaCX.Api
         }
 
         /// <summary>
-        /// Get open orders.
+        /// Get the user's open orders.
         /// </summary>
         /// <param name="book">Optional, if not specified, will default to btc_cad</param>
-        /// <returns></returns>
+        /// <returns>An array of open orders.</returns>
+        /// <seealso cref="GetOrderBookAsync(string, bool)"/>
         public async Task<OpenOrder[]> GetOpenOrdersAsync(string book = "btc_cad")
         {
             return await QueryPrivateAsync<OpenOrder[]>(
@@ -63,7 +64,8 @@ namespace QuadrigaCX.Api
         /// Lookup a specific order.
         /// </summary>
         /// <param name="id">A single 64 character long hexadecimal string taken from the list of orders.</param>
-        /// <returns></returns>
+        /// <returns>An array containing a single order.</returns>
+        /// <seealso cref="LookupOrderAsync(string[])"/>
         public async Task<Order[]> LookupOrderAsync(string id)
         {
             return await LookupOrderAsync(new string[] { id });
@@ -73,7 +75,8 @@ namespace QuadrigaCX.Api
         /// Lookup multiple orders.
         /// </summary>
         /// <param name="ids">An array of 64 character long hexadecimal strings taken from the list of orders.</param>
-        /// <returns></returns>
+        /// <returns>An array of orders.</returns>
+        /// <seealso cref="LookupOrderAsync(string)"/>
         public async Task<Order[]> LookupOrderAsync(string[] ids)
         {
             return await QueryPrivateAsync<Order[]>(
@@ -89,6 +92,11 @@ namespace QuadrigaCX.Api
 
         #region Trading
 
+        /// <summary>
+        /// Cancel a user's <see cref="OpenOrder"/>.
+        /// </summary>
+        /// <param name="id">A 64 characters long hexadecimal string taken from the list of orders.</param>
+        /// <returns>Returns 'true' if order has been found and canceled.</returns>
         public async Task<bool> CancelOrderAsync(string id)
         {
             return await QueryPrivateAsync<bool>(
@@ -106,7 +114,7 @@ namespace QuadrigaCX.Api
         /// <param name="amount">Amount of major currency.</param>
         /// <param name="price">Price to buy at.</param>
         /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
-        /// <returns>LimitOrder</returns>
+        /// <returns>The limit order created.</returns>
         public async Task<LimitOrder> Buy(decimal amount, decimal price, string book = "btc_cad")
         {
             return await QueryPrivateAsync<LimitOrder>(
@@ -125,7 +133,7 @@ namespace QuadrigaCX.Api
         /// </summary>
         /// <param name="amount">Amount of major currency to buy.</param>
         /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
-        /// <returns>MarketOrder</returns>
+        /// <returns>The market order filled.</returns>
         public async Task<MarketOrder> Buy(decimal amount, string book = "btc_cad")
         {
             return await QueryPrivateAsync<MarketOrder>(
@@ -144,7 +152,7 @@ namespace QuadrigaCX.Api
         /// <param name="amount">Amount of major currency.</param>
         /// <param name="price">Price to sell at.</param>
         /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
-        /// <returns>LimitOrder</returns>
+        /// <returns>The limit order created.</returns>
         public async Task<LimitOrder> Sell(decimal amount, decimal price, string book = "btc_cad")
         {
             return await QueryPrivateAsync<LimitOrder>(
@@ -163,7 +171,7 @@ namespace QuadrigaCX.Api
         /// </summary>
         /// <param name="amount">Amount of major currency to sell.</param>
         /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
-        /// <returns>MarketOrder</returns>
+        /// <returns>The market order filled.</returns>
         public async Task<MarketOrder> Sell(decimal amount, string book = "btc_cad")
         {
             return await QueryPrivateAsync<MarketOrder>(
@@ -181,13 +189,13 @@ namespace QuadrigaCX.Api
         #region Deposit and withdrawal
 
         /// <summary>
-        /// Returns a deposit address for funding your account.
+        /// Get a deposit address for funding your account.
         /// </summary>
-        /// <param name="currencySymbol">A 3-letter currency code (BTC, BCH, BTG, LTC, ETH).</param>
-        /// <returns></returns>
-        public async Task<string> GetDepositAddressAsync(string currencySymbol)
+        /// <param name="currencyCode">A 3-letter currency code (BTC, BCH, BTG, LTC, ETH).</param>
+        /// <returns>A deposit address for the supplied currency code.</returns>
+        public async Task<string> GetDepositAddressAsync(string currencyCode)
         {
-            string currencyName = GetCurrencyName(currencySymbol);
+            string currencyName = GetCurrencyName(currencyCode);
 
             return await QueryPrivateAsync<string>(
                 string.Format("{0}_deposit_address", currencyName),

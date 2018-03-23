@@ -3,6 +3,12 @@ using System;
 
 namespace QuadrigaCX.Api.Models
 {
+    /// <summary>
+    /// Represents an open order returned from <see cref="QuadrigaClient.GetOpenOrdersAsync(string)"/>.
+    /// </summary>
+    /// <seealso cref="Order"/>
+    /// <seealso cref="LimitOrder"/>
+    /// <seealso cref="MarketOrder"/>
     public class OpenOrder
     {
         /// <summary>

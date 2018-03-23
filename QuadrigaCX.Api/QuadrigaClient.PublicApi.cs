@@ -1,5 +1,6 @@
 ﻿using QuadrigaCX.Api.Models;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace QuadrigaCX.Api
@@ -15,18 +16,19 @@ namespace QuadrigaCX.Api
         /// </returns>
         public List<string> GetBooks()
         {
-            List<string> books = new List<string>();
-
-            books.Add("btc_cad");
-            books.Add("btc_usd");
-            books.Add("eth_cad");
-            books.Add("eth_btc");
-            books.Add("ltc_cad");
-            books.Add("ltc_btc");
-            books.Add("bch_cad");
-            books.Add("bch_btc");
-            books.Add("btg_cad");
-            books.Add("btg_btc");
+            List<string> books = new List<string>
+            {
+                "btc_cad",
+                "btc_usd",
+                "eth_cad",
+                "eth_btc",
+                "ltc_cad",
+                "ltc_btc",
+                "bch_cad",
+                "bch_btc",
+                "btg_cad",
+                "btg_btc"
+            };
 
             return books;
         }
@@ -42,24 +44,25 @@ namespace QuadrigaCX.Api
         /// </remarks>
         public Dictionary<string, string> GetCurrencies()
         {
-            Dictionary<string, string> currencies = new Dictionary<string, string>();
-
-            currencies.Add("cad", "Canadian Dollars");
-            currencies.Add("usd", "US Dollars");
-            currencies.Add("btc", "Bitcoin ");
-            currencies.Add("ltc", "Litecoin ");
-            currencies.Add("bch", "Bitcoin Cash");
-            currencies.Add("btg", "Bitcoin Gold");
-            currencies.Add("eth", "Ether");
+            Dictionary<string, string> currencies = new Dictionary<string, string>
+            {
+                { "cad", "Canadian Dollars" },
+                { "usd", "US Dollars" },
+                { "btc", "Bitcoin " },
+                { "ltc", "Litecoin " },
+                { "bch", "Bitcoin Cash" },
+                { "btg", "Bitcoin Gold" },
+                { "eth", "Ether" }
+            };
 
             return currencies;
         }
 
         /// <summary>
-        /// Get trading information from the specified book.
+        /// Current Trading Information.
         /// </summary>
         /// <param name="book">If unspecified, the book will default to btc_cad.</param>
-        /// <returns>Trading information from the specified book.</returns>
+        /// <returns>Trading information from the specified <paramref name="book"/>.</returns>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
         public async Task<TickerInfo> GetTickerInformationAsync(string book)
@@ -74,11 +77,11 @@ namespace QuadrigaCX.Api
         }
 
         /// <summary>
-        /// Get open orders.
+        /// Get all open orders.
         /// </summary>
         /// <param name="book">Book to return orders for. Default btc_cad.</param>
         /// <param name="group">Group orders with the same price.  Default: true.</param>
-        /// <returns>List of all open orders.</returns>
+        /// <returns>List of all open orders for the specified <paramref name="book"/>.</returns>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
         public async Task<OrderBook> GetOrderBookAsync(string book = "btc_cad", bool group = true)
@@ -98,7 +101,7 @@ namespace QuadrigaCX.Api
         /// </summary>
         /// <param name="book">Book to return orders for (optional, default btc_cad)</param>
         /// <param name="time">Time frame for transaction export ("minute" - 1 minute, "hour" - 1 hour). Default: hour.</param>
-        /// <returns>List of recent trades.</returns>
+        /// <returns>An array of recent trades.</returns>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
         public async Task<Transaction[]> GetTransactionsAsync(string book = "btc_cad", string time = "hour")

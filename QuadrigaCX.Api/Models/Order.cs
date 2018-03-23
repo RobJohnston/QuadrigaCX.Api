@@ -3,6 +3,13 @@ using System;
 
 namespace QuadrigaCX.Api.Models
 {
+    /// <summary>
+    /// Represents the details of an order returned from <see cref="QuadrigaClient.LookupOrderAsync(string)"/> 
+    /// or <see cref="QuadrigaClient.LookupOrderAsync(string[])"/>.
+    /// </summary>
+    /// <seealso cref="OpenOrder"/>
+    /// <seealso cref="LimitOrder"/>
+    /// <seealso cref="MarketOrder"/>
     public class Order
     {
         /// <summary>

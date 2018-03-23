@@ -25,6 +25,10 @@ Full release notes:  https://github.com/RobJohnston/QuadrigaCX.Api/releases
     <RepositoryUrl>https://github.com/RobJohnston/QuadrigaCX.Api</RepositoryUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
   </ItemGroup>

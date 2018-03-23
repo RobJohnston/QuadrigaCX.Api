@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 namespace QuadrigaCX.Api.Models
 {
+    /// <summary>
+    /// Represents a market order returned from <see cref="QuadrigaClient.Buy(decimal, string)"/> 
+    /// or <see cref="QuadrigaClient.Sell(decimal, string)"/>.
+    /// </summary>
+    /// <seealso cref="LimitOrder"/>
+    /// <seealso cref="OpenOrder"/>
+    /// <seealso cref="Order"/>
     public class MarketOrder
     {
         /// <summary>

@@ -5,7 +5,7 @@ namespace QuadrigaCX.Api
     /// <summary>
     /// Request context.
     /// </summary>
-    public class RequestContext
+    internal class RequestContext
     {
         /// <summary>
         /// Gets or sets the HTTP request object.
@@ -16,7 +16,7 @@ namespace QuadrigaCX.Api
     /// <summary>
     /// Response context.
     /// </summary>
-    public class ResponseContext
+    internal class ResponseContext
     {
         /// <summary>
         /// Gets or sets the HTTP response object.
