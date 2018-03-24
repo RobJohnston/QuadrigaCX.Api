@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadrigaCX.Api", "QuadrigaCX.Api\QuadrigaCX.Api.csproj", "{84A543AD-5A2B-4B50-BC87-02C3CA862533}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{EEDB2691-14BC-4769-9EEF-3E7017066014}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.md = CHANGELOG.md
@@ -13,16 +11,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadrigaCX.Api", "src\QuadrigaCX.Api\QuadrigaCX.Api.csproj", "{28B04BBF-4155-40C1-BD63-01246F18CBAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84A543AD-5A2B-4B50-BC87-02C3CA862533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84A543AD-5A2B-4B50-BC87-02C3CA862533}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84A543AD-5A2B-4B50-BC87-02C3CA862533}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84A543AD-5A2B-4B50-BC87-02C3CA862533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28B04BBF-4155-40C1-BD63-01246F18CBAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28B04BBF-4155-40C1-BD63-01246F18CBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28B04BBF-4155-40C1-BD63-01246F18CBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28B04BBF-4155-40C1-BD63-01246F18CBAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
