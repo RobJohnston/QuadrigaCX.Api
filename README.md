@@ -13,10 +13,14 @@ Contribute to this project by sending some XɃT my way:  3HwDqamKd6pcjzPF7QnLU1X
 
 [![Sign-up with QuadrigaCX](https://github.com/RobJohnston/QuadrigaCX.Api/blob/master/QCX%20300x250%20White%20CDN%20Sign%20Up.jpg)](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l)
 
+## Installation via NuGet
+```
+Install-Package QuadrigaCX.Api
+```
 
 ## Example usage
 
-```cs
+```csharp
 using QuadrigaCX.Api;
 using System;
 
@@ -28,12 +32,12 @@ namespace ConsoleApp1
         {
             Console.WriteLine("Hello QuadrigaCX!");
 
-            using (QuadrigaClient client = new QuadrigaClient())
+            using (var client = new QuadrigaClient())
             {
                 try
                 {
-                    var res = client.GetTickerInformationAsync("btc_cad").GetAwaiter().GetResult();
-                    Console.WriteLine(string.Format("Bid = {0}, Ask = {1}", res.Bid, res.Ask));
+                    var ticker = client.GetTickerInformationAsync("btc_cad").GetAwaiter().GetResult();
+                    Console.WriteLine(string.Format("Bid = {0}, Ask = {1}", ticker.Bid, ticker.Ask));
                 }
                 catch (QuadrigaException qex)
                 {
@@ -49,7 +53,6 @@ namespace ConsoleApp1
         }
     }
 }
-
 
 //Hello QuadrigaCX!
 //Bid = 10914.00, Ask = 10998.00
