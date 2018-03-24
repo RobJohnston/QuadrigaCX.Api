@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Added
 - Throw an exception if the API returns an error.
+- Add signature exception to catch when the client ID, API key, or API secret is invalid.
 
 ### Removed
 - Remove the error property added in previous version.

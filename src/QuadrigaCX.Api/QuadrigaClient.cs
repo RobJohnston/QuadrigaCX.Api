@@ -109,12 +109,22 @@ namespace QuadrigaCX.Api
         /// <returns>The task object representing the asynchronous operation.</returns>
         /// <remarks>The <paramref name="requestUrl"/> is relative to https://api.quadrigacx.com/v2/</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="requestUrl"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException">Api key is <c>null</c>. Do you use the correct constructor?</exception>
         /// <exception cref="HttpRequestException">There was a problem with the HTTP request.</exception>
         /// <exception cref="QuadrigaException">There was a problem with the QuadrigaCX API call.</exception>
         public async Task<T> QueryPrivateAsync<T>(string requestUrl, Dictionary<string, string> args = null)
         {
             if (requestUrl == null)
                 throw new ArgumentNullException(nameof(requestUrl));
+
+            if (_clientId <= 0)
+                throw new SignatureException(string.Format("The client ID is invalid.  Value '{0}'.", _clientId));
+
+            if (string.IsNullOrWhiteSpace(_key))
+                throw new SignatureException("The API key cannot be null.");
+
+            if (string.IsNullOrWhiteSpace(_secret))
+                throw new SignatureException("The API secret cannot be null.");
 
             // Add 3 additional args.
             args = args ?? new Dictionary<string, string>(3);
