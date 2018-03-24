@@ -90,9 +90,9 @@ namespace QuadrigaCX.Api
             args = args ?? new Dictionary<string, string>(0);
 
             // Setup request.
-            string urlEncodedArgs = UrlEncode(args);
+            var urlEncodedArgs = UrlEncode(args);
 
-            string address = string.Format("{0}/{1}/{2}?{3}", _url, _version, requestUrl, urlEncodedArgs);
+            var address = string.Format("{0}/{1}/{2}?{3}", _url, _version, requestUrl, urlEncodedArgs);
 
             var req = new HttpRequestMessage(HttpMethod.Get, address);
 
@@ -142,7 +142,7 @@ namespace QuadrigaCX.Api
             args["signature"] = GenerateApiSignature(nonce, _clientId.ToString(_culture), _key);
 
             // Setup request.
-            string urlEncodedArgs = UrlEncode(args);
+            var urlEncodedArgs = UrlEncode(args);
 
             var req = new HttpRequestMessage(HttpMethod.Post, requestUrl)
             {
@@ -193,7 +193,7 @@ namespace QuadrigaCX.Api
             };
 
             // Perform the HTTP request.
-            HttpResponseMessage res = await _httpClient.SendAsync(reqCtx.HttpRequest).ConfigureAwait(false);
+            var res = await _httpClient.SendAsync(reqCtx.HttpRequest).ConfigureAwait(false);
 
             var resCtx = new ResponseContext
             {
@@ -204,7 +204,7 @@ namespace QuadrigaCX.Api
             resCtx.HttpResponse.EnsureSuccessStatusCode();
 
             // Deserialize response.
-            string jsonContent = await resCtx.HttpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var jsonContent = await resCtx.HttpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
             var response = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
 
             ProcessError(jsonContent);
