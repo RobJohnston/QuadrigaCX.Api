@@ -202,12 +202,15 @@ namespace QuadrigaCX.Api
 
             // Throw for HTTP-level error.
             resCtx.HttpResponse.EnsureSuccessStatusCode();
-
-            // Deserialize response.
+            
+            // Get the response.
             var jsonContent = await resCtx.HttpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var response = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
 
+            // Check the response for errors.
             ProcessError(jsonContent);
+
+            // Deserialize the response.
+            var response = JsonConvert.DeserializeObject<T>(jsonContent, JsonSettings);
 
             return response;
         }
