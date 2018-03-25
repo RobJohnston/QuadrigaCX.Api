@@ -83,7 +83,7 @@ namespace QuadrigaCX.Api
                 "lookup_order",
                 new Dictionary<string, string>(1)
                 {
-                    ["id"] = String.Join(",", ids)
+                    ["id"] = string.Join(",", ids)
                 }
             );
         }
@@ -195,7 +195,7 @@ namespace QuadrigaCX.Api
         /// <returns>A deposit address for the supplied currency code.</returns>
         public async Task<string> GetDepositAddressAsync(string currencyCode)
         {
-            string currencyName = GetCurrencyName(currencyCode);
+            var currencyName = GetCurrencyName(currencyCode);
 
             return await QueryPrivateAsync<string>(
                 string.Format("{0}_deposit_address", currencyName),
@@ -214,7 +214,7 @@ namespace QuadrigaCX.Api
         {
             //TODO:  Look at validating the address.  See https://rosettacode.org/wiki/Bitcoin/address_validation#C.23
 
-            string currencyName = GetCurrencyName(currencySymbol);
+            var currencyName = GetCurrencyName(currencySymbol);
 
             return await QueryPrivateAsync<bool>(
                 string.Format("{0}_withdrawal", currencyName),

@@ -16,7 +16,7 @@ namespace QuadrigaCX.Api
         /// </returns>
         public List<string> GetBooks()
         {
-            List<string> books = new List<string>
+            var books = new List<string>
             {
                 "btc_cad",
                 "btc_usd",
@@ -44,7 +44,7 @@ namespace QuadrigaCX.Api
         /// </remarks>
         public Dictionary<string, string> GetCurrencies()
         {
-            Dictionary<string, string> currencies = new Dictionary<string, string>
+            var currencies = new Dictionary<string, string>
             {
                 { "cad", "Canadian Dollars" },
                 { "usd", "US Dollars" },

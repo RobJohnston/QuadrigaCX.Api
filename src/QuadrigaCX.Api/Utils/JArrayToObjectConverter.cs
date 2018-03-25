@@ -14,12 +14,12 @@ namespace QuadrigaCX.Api.Utils
         {
             existingValue = existingValue ?? Activator.CreateInstance(objectType);
             var array = JArray.Load(reader);
-            FieldInfo[] fields = objectType.GetRuntimeFields().ToArray();
+            var fields = objectType.GetRuntimeFields().ToArray();
 
-            for (int i = 0; i < fields.Length; i++)
+            for (var i = 0; i < fields.Length; i++)
             {
-                FieldInfo field = fields[i];
-                JToken token = array[i];
+                var field = fields[i];
+                var token = array[i];
                 field.SetValue(existingValue, token.ToObject(field.FieldType));
             }
 
