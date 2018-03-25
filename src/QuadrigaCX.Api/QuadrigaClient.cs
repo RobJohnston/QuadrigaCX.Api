@@ -245,12 +245,15 @@ namespace QuadrigaCX.Api
 
                 foreach(var response in responses)
                 {
-                    var exception = new QuadrigaException(response.Error.Message)
+                    if (response.Error != null)
                     {
-                        Code = response.Error.Code
-                    };
+                        var exception = new QuadrigaException(response.Error.Message)
+                        {
+                            Code = response.Error.Code
+                        };
 
-                    exceptions.Add(exception);
+                        exceptions.Add(exception);
+                    }
                 }
 
                 if (exceptions.Count == 1)
