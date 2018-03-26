@@ -13,7 +13,19 @@
     <PackageProjectUrl>https://github.com/RobJohnston/QuadrigaCX.Api</PackageProjectUrl>
     <PackageReleaseNotes>This is an alpha version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!
 
-      * Remove error property and throw exception if error is returned from API.
+Added
+
+    * Throw an exception if the API returns an error.
+    * Add SignatureException to catch when the client ID, API key, or API secret is invalid.
+    * Fix to throw QuadrigaException when an API call that is supposed to return a string return an error instead.
+
+Changed
+
+    * Create distinct deposit and withdraw methods to replace the generic methods.
+
+Removed
+
+    * Remove the error property added in previous version.
 
  Contribute to this project by sending some XɃT my way: 3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
 
