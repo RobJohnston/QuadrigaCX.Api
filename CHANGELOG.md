@@ -6,17 +6,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Added
 - Throw an exception if the API returns an error.
-- Add signature exception to catch when the client ID, API key, or API secret is invalid.
+- Add `SignatureException` to catch when the client ID, API key, or API secret is invalid.
+- Fix to throw `QuadrigaException` when an API call that is supposed to return a string return an error instead.
+
+### Changed
+- Create distinct deposit and withdraw methods to replace the generic methods.
 
 ### Removed
 - Remove the error property added in previous version.
 
 ## [0.0.3] - 2018-03-18
 ### Added
-- Added the trading, deposit, and withdrawal functionality (not tested at all).
+- Add the trading, deposit, and withdrawal functionality (not tested at all).
+- Add methods to get currencies and books (these are not part of the API).
 
 ### Changed
 - Return the error as a property of the object being retrieved instead of throwing an exception.
+- Rename methods to make it clear that they are asyncronous.
 
 ## [0.0.2] - 2018-03-14
 ### Changed
