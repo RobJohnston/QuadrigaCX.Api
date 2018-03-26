@@ -189,32 +189,120 @@ namespace QuadrigaCX.Api
         #region Deposit and withdrawal
 
         /// <summary>
-        /// Get a deposit address for funding your account.
+        /// Get a bitcoin deposit address for funding your account.
         /// </summary>
-        /// <param name="currencyCode">A 3-letter currency code (BTC, BCH, BTG, LTC, ETH).</param>
-        /// <returns>A deposit address for the supplied currency code.</returns>
-        public async Task<string> GetDepositAddressAsync(string currencyCode)
+        /// <returns>A bitcoin address.</returns>
+        public async Task<string> GetBitcoinDepositAddress()
         {
-            var currencyName = GetCurrencyName(currencyCode);
+            return await GetDepositAddressAsync("bitcoin");
+        }
 
+        /// <summary>
+        /// Withdraw bitcoin.
+        /// </summary>
+        /// <param name="amount">The amount to withdraw.</param>
+        /// <param name="address">The bitcoin address that should receive the amount.</param>
+        /// <returns>OK or error.</returns>
+        public async Task<bool> WithdrawBitcoinAsync(decimal amount, string address)
+        {
+            return await WithdrawAsync(amount, address, "bitcoin");
+        }
+
+        /// <summary>
+        /// Get a bitcoin cash deposit address for funding your account.
+        /// </summary>
+        /// <returns>A bitcoin cash address.</returns>
+        public async Task<string> GetBitcoinCashDepositAddress()
+        {
+            return await GetDepositAddressAsync("bitcoincash");
+        }
+
+        /// <summary>
+        /// Withdraw bitcoin cash.
+        /// </summary>
+        /// <param name="amount">The amount to withdraw.</param>
+        /// <param name="address">The bitcoin cash address that should receive the amount.</param>
+        /// <returns>OK or error.</returns>
+        public async Task<bool> WithdrawBitcoinCashAsync(decimal amount, string address)
+        {
+            return await WithdrawAsync(amount, address, "bitcoincash");
+        }
+
+        /// <summary>
+        /// Get a bitcoin gold deposit address for funding your account.
+        /// </summary>
+        /// <returns>A bitcoin gold address.</returns>
+        public async Task<string> GetBitcoinGoldDepositAddress()
+        {
+            return await GetDepositAddressAsync("bitcoingold");
+        }
+
+        /// <summary>
+        /// Withdraw bitcoin gold.
+        /// </summary>
+        /// <param name="amount">The amount to withdraw.</param>
+        /// <param name="address">The bitcoin gold address that should receive the amount.</param>
+        /// <returns>OK or error.</returns>
+        public async Task<bool> WithdrawBitcoinGoldAsync(decimal amount, string address)
+        {
+            return await WithdrawAsync(amount, address, "bitcoingold");
+        }
+
+        /// <summary>
+        /// Get a litecoin deposit address for funding your account.
+        /// </summary>
+        /// <returns>A litecoin address.</returns>
+        public async Task<string> GetLitecoinDepositAddress()
+        {
+            return await GetDepositAddressAsync("litecoin");
+        }
+
+        /// <summary>
+        /// Withdraw litecoin.
+        /// </summary>
+        /// <param name="amount">The amount to withdraw</param>
+        /// <param name="address">The litecoin address that should receive the amount.</param>
+        /// <returns>OK or error.</returns>
+        public async Task<bool> WithdrawLitecoinAsync(decimal amount, string address)
+        {
+            return await WithdrawAsync(amount, address, "litecoin");
+        }
+
+        /// <summary>
+        /// Get an ethereum deposit address for funding your account.
+        /// </summary>
+        /// <returns>An ethereum address.</returns>
+        public async Task<string> GetEtherDepositAddress()
+        {
+            return await GetDepositAddressAsync("ether");
+        }
+
+        /// <summary>
+        /// Withdraw ether.
+        /// </summary>
+        /// <param name="amount">The amount to withdraw.</param>
+        /// <param name="address">The ethereum address that should receive the amount.</param>
+        /// <returns>OK or error.</returns>
+        public async Task<bool> WithdrawEtherAsync(decimal amount, string address)
+        {
+            return await WithdrawAsync(amount, address, "ether");
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private async Task<string> GetDepositAddressAsync(string currencyName)
+        {
             return await QueryPrivateAsync<string>(
                 string.Format("{0}_deposit_address", currencyName),
                 null
             );
         }
 
-        /// <summary>
-        /// Withdraw
-        /// </summary>
-        /// <param name="amount">The amount to withdraw.</param>
-        /// <param name="address">The address-to send the amount.</param>
-        /// <param name="currencySymbol">A 3 letter currency code (BTC, BCH, BTG, LTC, ETH).</param>
-        /// <returns>OK or error.</returns>
-        public async Task<bool> WithdrawAsync(decimal amount, string address, string currencySymbol)
+        private async Task<bool> WithdrawAsync(decimal amount, string address, string currencyName)
         {
             //TODO:  Look at validating the address.  See https://rosettacode.org/wiki/Bitcoin/address_validation#C.23
-
-            var currencyName = GetCurrencyName(currencySymbol);
 
             return await QueryPrivateAsync<bool>(
                 string.Format("{0}_withdrawal", currencyName),
@@ -227,38 +315,5 @@ namespace QuadrigaCX.Api
         }
 
         #endregion
-
-        /// <summary>
-        /// Get the name of a currency as required for the path of the deposit or withdraw addresses.
-        /// </summary>
-        /// <param name="currencySymbol">The currency symbol.</param>
-        /// <returns></returns>
-        private static string GetCurrencyName(string currencySymbol)
-        {
-            string currencyName;
-
-            switch (currencySymbol.ToLowerInvariant())
-            {
-                case "btc":
-                    currencyName = "bitcoin";
-                    break;
-                case "bch":
-                    currencyName = "bitcoincash";
-                    break;
-                case "btg":
-                    currencyName = "bitcoingold";
-                    break;
-                case "ltc":
-                    currencyName = "litecoin";
-                    break;
-                case "eth":
-                    currencyName = "ether";
-                    break;
-                default:
-                    throw new ArgumentException("Invalid currency symbol", currencySymbol);
-            }
-
-            return currencyName;
-        }
     }
 }
