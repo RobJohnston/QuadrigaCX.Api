@@ -58,7 +58,7 @@ namespace ConsoleApp1
 //Bid = 10914.00, Ask = 10998.00
 ```
 
-## Testing an untested methods
+## Tested and untested methods
 
 The following methods have been tested in the sense that they successfully call the 
 [QuadrigaCX API](https://www.quadrigacx.com/api_info) and get a response that is not an error.
