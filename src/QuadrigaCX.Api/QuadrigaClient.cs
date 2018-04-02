@@ -4,6 +4,7 @@ using Newtonsoft.Json.Serialization;
 using QuadrigaCX.Api.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -205,6 +206,9 @@ namespace QuadrigaCX.Api
             
             // Get the response.
             var jsonContent = await resCtx.HttpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+            Debug.WriteLine(req);
+            Debug.WriteLine(res);
+            Debug.WriteLine(jsonContent);
 
             // Check the response for errors.
             ProcessError(jsonContent);
