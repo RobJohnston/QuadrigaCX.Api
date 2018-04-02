@@ -102,3 +102,12 @@ Errors are listed in numerical order of their code with a sample message beside 
 * 105 - Invalid or missing payload
 * 106 - Cannot perform request - not found
 * 300 - Permission denied
+
+## API rate limit
+
+QuadrigaCX seems to operate an out-of-band support group on reddit. From a question posted 2018-01-01:
+
+>"You're limited to 30 calls per minute on both the public and private APIs to allow you to get a feel for the API. 
+> Once you have managed to trade efficiently, we can consider removing these limits."
+
+Source:  https://www.reddit.com/r/QuadrigaCX/comments/88m649/api_limit/
