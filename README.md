@@ -57,3 +57,48 @@ namespace ConsoleApp1
 //Hello QuadrigaCX!
 //Bid = 10914.00, Ask = 10998.00
 ```
+
+## Testing an untested methods
+
+The following methods have been tested in the sense that they successfully call the 
+[QuadrigaCX API](https://www.quadrigacx.com/api_info) and get a response that is not an error.
+
+### Tested
+
+* Current Trading Information
+* Order Book
+* Transactions
+* Account balance
+* User Transactions
+* Open Orders
+* Lookup Order
+* Cancel Order
+* Buy Order - Limit Order
+* Bitcoin Deposit
+* Bitcoin Cash Deposit
+* Bitcoin Gold Deposit
+* Litecoin Deposit
+* Ether Deposit
+
+### Untested
+
+* Buy Order - Market Order
+* Sell Order - Limit Order
+* Sell Order - Market Order
+* Bitcoin Withdraw
+* Bitcoin Cash Withdraw
+* Bitcoin Gold Withdraw
+* Litecoin Withdraw
+* Ether Withdraw
+
+## Errors
+
+The following error have been found through experimentation because they are not documented by QuadrigaCX.
+Errors are listed in numerical order of their code with a sample message beside them, and are thrown as a `QuadrigaException`.
+
+* 21 - Incorrect Total: $10.00USD exceeds available USD balance
+* 23 - Incorrect price $1.00CAD is below the minimum of $10.00CAD
+* 101 - Invalid API Code or Invalid Signature
+* 105 - Invalid or missing payload
+* 106 - Cannot perform request - not found
+* 300 - Permission denied
