@@ -8,57 +8,6 @@ namespace QuadrigaCX.Api
     public partial class QuadrigaClient
     {
         /// <summary>
-        /// Get the current order books on QuadrigaCX.
-        /// An order book is always referred to in the API as "Major_Minor". For example: "btc_cad".
-        /// </summary>
-        /// <returns>
-        /// A List of books.  Note that Bitcoin is considered the "minor" currency in the Ether/Bitcoin order book.
-        /// </returns>
-        public List<string> GetBooks()
-        {
-            var books = new List<string>
-            {
-                "btc_cad",
-                "btc_usd",
-                "eth_cad",
-                "eth_btc",
-                "ltc_cad",
-                "ltc_btc",
-                "bch_cad",
-                "bch_btc",
-                "btg_cad",
-                "btg_btc"
-            };
-
-            return books;
-        }
-
-        /// <summary>
-        /// Get the currencies used on QuadrigaCX.
-        /// </summary>
-        /// <returns>
-        /// A Dictionary containing the 3-letter code as Key and the full name as Value.
-        /// </returns>
-        /// <remarks>
-        /// The "account balance" call also returns "etc" and "xau", but these are not mentioned elsewhere.
-        /// </remarks>
-        public Dictionary<string, string> GetCurrencies()
-        {
-            var currencies = new Dictionary<string, string>
-            {
-                { "cad", "Canadian Dollars" },
-                { "usd", "US Dollars" },
-                { "btc", "Bitcoin " },
-                { "ltc", "Litecoin " },
-                { "bch", "Bitcoin Cash" },
-                { "btg", "Bitcoin Gold" },
-                { "eth", "Ether" }
-            };
-
-            return currencies;
-        }
-
-        /// <summary>
         /// Current Trading Information.
         /// </summary>
         /// <param name="book">If unspecified, the book will default to btc_cad.</param>
