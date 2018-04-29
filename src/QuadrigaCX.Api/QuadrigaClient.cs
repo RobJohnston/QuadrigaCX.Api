@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
-using QuadrigaCX.Api.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -12,6 +8,10 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
+using QuadrigaCX.Api.Models;
 
 namespace QuadrigaCX.Api
 {
@@ -93,9 +93,11 @@ namespace QuadrigaCX.Api
             // Setup request.
             var urlEncodedArgs = UrlEncode(args);
 
-            var address = string.Format("{0}/{1}/{2}?{3}", _url, _version, requestUrl, urlEncodedArgs);
-
-            var req = new HttpRequestMessage(HttpMethod.Get, address);
+            var req = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(_httpClient.BaseAddress, string.Format("{0}?{1}", requestUrl, urlEncodedArgs))
+            };
 
             // Send request and deserialize response.
             return await SendRequestAsync<T>(req).ConfigureAwait(false);
