@@ -9,7 +9,9 @@ A .Net Standard client for the QuadrigaCX cryptocurrency API.
 
 The trading, deposit, and withdrawal functionality have been added but not tested at all.
 
-Contribute to this project by sending some XɃT my way:  3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
+An account is not required to access the public API methods. 
+However, if you do create an account, please use my referral code (c7flx49lbhc3b1awgl8pig7l) when you [register](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l). 
+It's an easy way to give back at no cost to you.
 
 [![Sign-up with QuadrigaCX](https://github.com/RobJohnston/QuadrigaCX.Api/blob/master/QCX%20300x250%20White%20CDN%20Sign%20Up.jpg)](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l)
 
@@ -111,3 +113,17 @@ QuadrigaCX seems to operate an out-of-band support group on reddit. From a quest
 > Once you have managed to trade efficiently, we can consider removing these limits."
 
 Source:  https://www.reddit.com/r/QuadrigaCX/comments/88m649/api_limit/
+
+## My related projects
+
+* [EzBtc.Api](https://github.com/RobJohnston/EzBtc.Api)
+* [Coinsquare.Api](https://github.com/RobJohnston/Coinsquare.Api)
+* [AnxPro.Api](https://github.com/RobJohnston/AnxPro.Api)
+
+## Donation addresses
+
+* Bitcoin:  361kH8JtiP41G5qfwYj3z4vuTwyPiWdNUW
+* Bitcoin Cash:  16z7wZy9aku3P3UeihjLmUDbt3aU6DaHtS
+* Bitcoin Gold:  GcqW8X1od3wH5Mwn3MUTf8j3N4iHCaw1PW
+* Ether:  0xb8f65ea3e9fc2c48e02a5e0ab2fab006998bc9fa
+* Litecoin:  LMbcKyXLxVGwMFPT1hRaBXb6AoiVgXrYhQ
