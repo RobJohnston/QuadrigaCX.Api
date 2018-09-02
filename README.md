@@ -81,6 +81,7 @@ The untested methods are expected to succeed, but may raise an error if the resp
 * Cancel Order
 * Buy Order - Limit Order
 * Buy Order - Market Order (API docs incorrect)
+* Sell Order - Limit Order
 * Sell Order - Market Order (API docs incorrect)
 * Bitcoin Deposit
 * Bitcoin Cash Deposit
@@ -90,7 +91,6 @@ The untested methods are expected to succeed, but may raise an error if the resp
 
 ### Untested
 
-* Sell Order - Limit Order
 * Bitcoin Withdraw
 * Bitcoin Cash Withdraw
 * Bitcoin Gold Withdraw
@@ -107,8 +107,10 @@ They are thrown as a `QuadrigaException`.
 * 23 - Incorrect price $1.00CAD is below the minimum of $10.00CAD
 * 101 - Invalid API Code or Invalid Signature
 * 105 - Invalid or missing payload
+* 108 - Address rejected - does not match API withdrawal address
 * 106 - Cannot perform request - not found
 * 300 - Permission denied
+* 301 - Your ability to withdraw is temporarily disabled due to a recent profile or major settings change. For your protection, this measure is in place for 24hrs from the time the change was made
 
 ## API rate limit
 
