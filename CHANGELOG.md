@@ -43,8 +43,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - First alpha release.
 
-[Unreleased]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v1.0.0-beta...HEAD
-[0.1.0]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.4-alpha...v1.0.0-beta
+[Unreleased]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.1.0-beta...HEAD
+[0.1.0]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.4-alpha...v0.1.0-beta
 [0.0.4]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.3-alpha...v0.0.4-alpha
 [0.0.3]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.2-alpha...v0.0.3-alpha
 [0.0.2]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.1-alpha...v0.0.2-alpha
