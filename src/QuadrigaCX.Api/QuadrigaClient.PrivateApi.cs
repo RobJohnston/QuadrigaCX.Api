@@ -115,7 +115,7 @@ namespace QuadrigaCX.Api
         /// <param name="price">Price to buy at.</param>
         /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
         /// <returns>The limit order created.</returns>
-        public async Task<LimitOrder> Buy(decimal amount, decimal price, string book = "btc_cad")
+        public async Task<LimitOrder> BuyAsync(decimal amount, decimal price, string book = "btc_cad")
         {
             return await QueryPrivateAsync<LimitOrder>(
                 "buy",
@@ -134,7 +134,7 @@ namespace QuadrigaCX.Api
         /// <param name="amount">Amount of major currency to buy.</param>
         /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
         /// <returns>The market order filled.</returns>
-        public async Task<MarketOrder> Buy(decimal amount, string book = "btc_cad")
+        public async Task<MarketOrder> BuyAsync(decimal amount, string book = "btc_cad")
         {
             return await QueryPrivateAsync<MarketOrder>(
                 "buy",
@@ -153,7 +153,7 @@ namespace QuadrigaCX.Api
         /// <param name="price">Price to sell at.</param>
         /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
         /// <returns>The limit order created.</returns>
-        public async Task<LimitOrder> Sell(decimal amount, decimal price, string book = "btc_cad")
+        public async Task<LimitOrder> SellAsync(decimal amount, decimal price, string book = "btc_cad")
         {
             return await QueryPrivateAsync<LimitOrder>(
                 "sell",
@@ -172,7 +172,7 @@ namespace QuadrigaCX.Api
         /// <param name="amount">Amount of major currency to sell.</param>
         /// <param name="book">Optional, if not specified, will default to btc_cad.</param>
         /// <returns>The market order filled.</returns>
-        public async Task<MarketOrder> Sell(decimal amount, string book = "btc_cad")
+        public async Task<MarketOrder> SellAsync(decimal amount, string book = "btc_cad")
         {
             return await QueryPrivateAsync<MarketOrder>(
                 "sell",
