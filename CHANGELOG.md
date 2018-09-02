@@ -1,11 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
-## [0.0.4] - 2018-13-25
+## [0.1.0] - 2018-09-02
+
+### Changed
+- Suffix buy and sell methods with Async.
+- Update MarketOrder class after experimentation.
+
+### Removed
+- Remove GetBooks and GetCurrencies methods, as they are not part of the API.
+
+## [0.0.4] - 2018-03-25
 ### Added
 - Throw an exception if the API returns an error.
 - Add `SignatureException` to catch when the client ID, API key, or API secret is invalid.
@@ -34,7 +43,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Added
 - First alpha release.
 
-[Unreleased]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.4-alpha...HEAD
+[Unreleased]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v1.0.0-beta...HEAD
+[0.1.0]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.4-alpha...v1.0.0-beta
 [0.0.4]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.3-alpha...v0.0.4-alpha
 [0.0.3]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.2-alpha...v0.0.3-alpha
 [0.0.2]: https://github.com/RobJohnston/QuadrigaCX.Api/compare/v0.0.1-alpha...v0.0.2-alpha

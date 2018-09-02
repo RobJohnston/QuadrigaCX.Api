@@ -5,9 +5,7 @@ A .Net Standard client for the QuadrigaCX cryptocurrency API.
 
 [![nuget](https://img.shields.io/nuget/v/QuadrigaCX.Api.svg)](https://www.nuget.org/packages/QuadrigaCX.Api/)
 
-**This is an alpha version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!**
-
-The trading, deposit, and withdrawal functionality have been added but not tested at all.
+**This is a beta version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!**
 
 An account is not required to access the public API methods. 
 However, if you do create an account, please use my referral code (c7flx49lbhc3b1awgl8pig7l) when you [register](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l). 
@@ -62,8 +60,14 @@ namespace ConsoleApp1
 
 ## Tested and untested methods
 
+All functionality has been added but not all tested thoroughly.  
+There are some discrepancies between what is written in the [QuadrigaCX API documentation](https://www.quadrigacx.com/api_info) and what has been found through experimentation.
+
+
 The following methods have been tested in the sense that they successfully call the 
 [QuadrigaCX API](https://www.quadrigacx.com/api_info) and get a response that is not an error.
+
+The untested methods are expected to succeed, but may raise an error if the response isn't what was expected.
 
 ### Tested
 
@@ -76,6 +80,8 @@ The following methods have been tested in the sense that they successfully call 
 * Lookup Order
 * Cancel Order
 * Buy Order - Limit Order
+* Buy Order - Market Order (API docs incorrect)
+* Sell Order - Market Order (API docs incorrect)
 * Bitcoin Deposit
 * Bitcoin Cash Deposit
 * Bitcoin Gold Deposit
@@ -84,9 +90,7 @@ The following methods have been tested in the sense that they successfully call 
 
 ### Untested
 
-* Buy Order - Market Order
 * Sell Order - Limit Order
-* Sell Order - Market Order
 * Bitcoin Withdraw
 * Bitcoin Cash Withdraw
 * Bitcoin Gold Withdraw
@@ -95,10 +99,11 @@ The following methods have been tested in the sense that they successfully call 
 
 ## Errors
 
-The following error have been found through experimentation because they are not documented by QuadrigaCX.
-Errors are listed in numerical order of their code with a sample message beside them, and are thrown as a `QuadrigaException`.
+The following error have been found through experimentation and are not documented by QuadrigaCX.
+Errors are listed in numerical order of their code with a sample message beside them.  
+They are thrown as a `QuadrigaException`.
 
-* 21 - Incorrect Total: $10.00USD exceeds available USD balance
+* 21 - Incorrect Amount: $98,544.47CAD exceeds available CAD balance
 * 23 - Incorrect price $1.00CAD is below the minimum of $10.00CAD
 * 101 - Invalid API Code or Invalid Signature
 * 105 - Invalid or missing payload

@@ -5,29 +5,24 @@
     
     <PackageId>QuadrigaCX.Api</PackageId>
     <Title>QuadrigaCX.Api</Title>
-    <Version>0.0.4-alpha</Version>
+    <Version>0.1.0-beta</Version>
     <Authors>rob_johnston</Authors>
     <Description>A .Net Standard client for the QuadrigaCX cryptocurrency API.</Description>
     <Copyright>Copyright © 2018 Rob Johnston</Copyright>
     <PackageLicenseUrl>https://github.com/RobJohnston/QuadrigaCX.Api/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/RobJohnston/QuadrigaCX.Api</PackageProjectUrl>
-    <PackageReleaseNotes>This is an alpha version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!
-
-Added
-
-    * Throw an exception if the API returns an error.
-    * Add SignatureException to catch when the client ID, API key, or API secret is invalid.
-    * Fix to throw QuadrigaException when an API call that is supposed to return a string return an error instead.
+    <PackageReleaseNotes>This is a beta version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!
 
 Changed
 
-    * Create distinct deposit and withdraw methods to replace the generic methods.
+    * Suffix buy and sell methods with Async.
+    * Update MarketOrder class after experimentation.
 
 Removed
 
-    * Remove the error property added in previous version.
+    * Remove GetBooks and GetCurrencies methods, as they are not part of the API.
 
- Contribute to this project by sending some XɃT my way: 3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
+Contribute to this project by sending some XɃT my way: 3HwDqamKd6pcjzPF7QnLU1XyWo3PGfcGib
 
 Sign-up with QuadrigaCX:  https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l
 
@@ -35,10 +30,14 @@ Full release notes:  https://github.com/RobJohnston/QuadrigaCX.Api/releases
 </PackageReleaseNotes>
     <PackageTags>api-client; cryptocurrency; bitcoin; litecoin; ether; quadrigacx</PackageTags>
     <RepositoryUrl>https://github.com/RobJohnston/QuadrigaCX.Api</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile></DocumentationFile>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
