@@ -5,7 +5,11 @@ A .Net Standard client for the QuadrigaCX cryptocurrency API.
 
 [![nuget](https://img.shields.io/nuget/v/QuadrigaCX.Api.svg)](https://www.nuget.org/packages/QuadrigaCX.Api/)
 
-**This is a beta version, meaning the API has not been tested on any production application. USE AT YOUR OWN RISK!**
+**This is a beta version, meaning the software is feature complete buy may contain bugs. USE AT YOUR OWN RISK!**
+
+All functionality has been added but not all tested thoroughly.  
+There are some discrepancies between what is written in the [QuadrigaCX API documentation](https://www.quadrigacx.com/api_info) and what has been found through experimentation.
+
 
 An account is not required to access the public API methods. 
 However, if you do create an account, please use my referral code (c7flx49lbhc3b1awgl8pig7l) when you [register](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l). 
@@ -57,45 +61,6 @@ namespace ConsoleApp1
 //Hello QuadrigaCX!
 //Bid = 10914.00, Ask = 10998.00
 ```
-
-## Tested and untested methods
-
-All functionality has been added but not all tested thoroughly.  
-There are some discrepancies between what is written in the [QuadrigaCX API documentation](https://www.quadrigacx.com/api_info) and what has been found through experimentation.
-
-
-The following methods have been tested in the sense that they successfully call the 
-[QuadrigaCX API](https://www.quadrigacx.com/api_info) and get a response that is not an error.
-
-The untested methods are expected to succeed, but may raise an error if the response isn't what was expected.
-
-### Tested
-
-* Current Trading Information
-* Order Book
-* Transactions
-* Account balance
-* User Transactions
-* Open Orders
-* Lookup Order
-* Cancel Order
-* Buy Order - Limit Order
-* Buy Order - Market Order (API docs incorrect)
-* Sell Order - Limit Order
-* Sell Order - Market Order (API docs incorrect)
-* Bitcoin Deposit
-* Bitcoin Cash Deposit
-* Bitcoin Gold Deposit
-* Litecoin Deposit
-* Ether Deposit
-
-### Untested
-
-* Bitcoin Withdraw
-* Bitcoin Cash Withdraw
-* Bitcoin Gold Withdraw
-* Litecoin Withdraw
-* Ether Withdraw
 
 ## Errors
 
