@@ -304,7 +304,7 @@ namespace QuadrigaCX.Api
         {
             //TODO:  Look at validating the address.  See https://rosettacode.org/wiki/Bitcoin/address_validation#C.23
 
-            return await QueryPrivateAsync<bool>(
+            var result = await QueryPrivateAsync<string>(
                 string.Format("{0}_withdrawal", currencyName),
                 new Dictionary<string, string>(2)
                 {
@@ -312,6 +312,11 @@ namespace QuadrigaCX.Api
                     ["address"] = address
                 }
             );
+
+            if (result.ToLowerInvariant() == "ok")
+                return true;
+            else
+                return false;
         }
 
         #endregion
