@@ -25,8 +25,9 @@ Install-Package QuadrigaCX.Api
 ## Example usage
 
 ```csharp
-using QuadrigaCX.Api;
 using System;
+using System.Threading.Tasks;
+using QuadrigaCX.Api;
 
 namespace ConsoleApp1
 {
@@ -34,14 +35,17 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello QuadrigaCX!");
+            Console.WriteLine("Hello QuadrigaCX!\n");
 
             using (var client = new QuadrigaClient())
             {
                 try
                 {
-                    var ticker = client.GetTickerInformationAsync("btc_cad").GetAwaiter().GetResult();
-                    Console.WriteLine(string.Format("Bid = {0}, Ask = {1}", ticker.Bid, ticker.Ask));
+                    var t = Task.Run(() => client.GetTickerInformationAsync("btc_cad"));
+                    var ticker = t.Result;
+
+                    Console.WriteLine(string.Format("Bid = {0}, Ask = {1}, Volume = {2}", 
+                        ticker.Bid, ticker.Ask, ticker.Volume));
                 }
                 catch (QuadrigaException qex)
                 {
@@ -53,13 +57,20 @@ namespace ConsoleApp1
                 }
             }
 
+            Console.WriteLine("\nPress any key to exit.");
             Console.ReadKey();
         }
     }
 }
+```
 
-//Hello QuadrigaCX!
-//Bid = 10914.00, Ask = 10998.00
+### Output
+```
+Hello QuadrigaCX!
+
+Bid = 9050.00, Ask = 9099.98, Volume = 207.56169241
+
+Press any key to exit.
 ```
 
 ## Errors
