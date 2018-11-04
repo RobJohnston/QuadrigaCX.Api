@@ -4,6 +4,7 @@ A .Net Standard client for the QuadrigaCX cryptocurrency API.
 
 
 [![nuget](https://img.shields.io/nuget/v/QuadrigaCX.Api.svg)](https://www.nuget.org/packages/QuadrigaCX.Api/)
+![Downloads](https://img.shields.io/nuget/dt/QuadrigaCx.Api.svg)
 
 **This is a beta version, meaning the software is feature complete buy may contain bugs. USE AT YOUR OWN RISK!**
 
@@ -13,7 +14,7 @@ There are some discrepancies between what is written in the [QuadrigaCX API docu
 
 An account is not required to access the public API methods. 
 However, if you do create an account, please use my referral code (c7flx49lbhc3b1awgl8pig7l) when you [register](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l). 
-It's an easy way to give back at no cost to you.
+It's an easy way to give back to this project at no cost to you.
 
 [![Sign-up with QuadrigaCX](https://github.com/RobJohnston/QuadrigaCX.Api/blob/master/QCX%20300x250%20White%20CDN%20Sign%20Up.jpg)](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l)
 
@@ -99,8 +100,10 @@ Source:  https://www.reddit.com/r/QuadrigaCX/comments/88m649/api_limit/
 
 ## My related projects
 
-* [EzBtc.Api](https://github.com/RobJohnston/EzBtc.Api)
+* [CoinField.Api](https://github.com/RobJohnston/CoinField.Api)
+* [Ndax.Api](https://github.com/RobJohnston/Ndax.Api) and [AlphaPoint.Api](https://github.com/RobJohnston/alphapoint.api/)
 * [Coinsquare.Api](https://github.com/RobJohnston/Coinsquare.Api)
+* [EzBtc.Api](https://github.com/RobJohnston/EzBtc.Api)
 * [AnxPro.Api](https://github.com/RobJohnston/AnxPro.Api)
 
 ## Donation addresses
