@@ -1,9 +1,14 @@
-# QuadrigaCX.Api
-A .Net Standard client for the QuadrigaCX cryptocurrency API. 
+﻿# QuadrigaCX.Api
+A .Net Standard client for the QuadrigaCX API.
 
-All functionality has been added but not all tested thoroughly.  
-There are some discrepancies between what is written in the [QuadrigaCX API documentation](https://www.quadrigacx.com/api_info) and what has been found through experimentation.
+## Features
+- **Full** coverage of the  [QuadrigaCX API v2](https://www.quadrigacx.com/api_info).
+- Simple API abstraction uses similar method names and parameters as the QuadrigaCX API documentation. 
+- Exceptions returned from the server include the error code and message to ease troubleshooting.
+- Built using the [Task-based Asynchronous Pattern](https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap), the recommended asynchronous design pattern for new development.
+- Compatible with **.NET Standard 2.0**.
 
+## Getting started
 
 An account is not required to access the public API methods. 
 However, if you do create an account, please use my referral code (c7flx49lbhc3b1awgl8pig7l) when you [register](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l). 
@@ -70,6 +75,37 @@ Bid = 9050.00, Ask = 9099.98, Volume = 207.56169241
 
 Press any key to exit.
 ```
+
+## API Coverage
+
+
+| PUBLIC                 |    Covered     |
+|------------------------|:--------------:|
+| Ticker                 |  ✔            |
+| Order Book             |  ✔            |
+| Transactions           |  ✔            |
+
+| AUTHENTICATED          |    Covered     |
+|------------------------|:--------------:|
+| Balance                |  ✔            |
+| User Transactions      |  ✔            |
+| Open Orders            |  ✔            |
+| Lookup Order           |  ✔            |
+| Cancel Order           |  ✔            |
+| Buy Order - Limit      |  ✔            |
+| Buy Order - Market     |  ✔            |
+| Sell Order - Limit     |  ✔            |
+| Sell Order - Market    |  ✔            |
+| Bitcoin Deposit        |  ✔            |
+| Bitcoin Withdraw       |  ✔            |
+| Bitcoin Cash Deposit   |  ✔            |
+| Bitcoin Cash Withdraw  |  ✔            |
+| Bitcoin Gold Deposit   |  ✔            |
+| Bitcoin Gold Withdraw  |  ✔            |
+| Litecoin Deposit       |  ✔            |
+| Litecoin Withdraw      |  ✔            |
+| Ether Deposit          |  ✔            |
+| Ether Withdraw         |  ✔            |
 
 ## Errors
 
