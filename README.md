@@ -1,13 +1,6 @@
 # QuadrigaCX.Api
 A .Net Standard client for the QuadrigaCX cryptocurrency API. 
 
-
-
-[![nuget](https://img.shields.io/nuget/v/QuadrigaCX.Api.svg)](https://www.nuget.org/packages/QuadrigaCX.Api/)
-![Downloads](https://img.shields.io/nuget/dt/QuadrigaCx.Api.svg)
-
-**This is a beta version, meaning the software is feature complete buy may contain bugs. USE AT YOUR OWN RISK!**
-
 All functionality has been added but not all tested thoroughly.  
 There are some discrepancies between what is written in the [QuadrigaCX API documentation](https://www.quadrigacx.com/api_info) and what has been found through experimentation.
 
@@ -19,6 +12,10 @@ It's an easy way to give back to this project at no cost to you.
 [![Sign-up with QuadrigaCX](https://github.com/RobJohnston/QuadrigaCX.Api/blob/master/QCX%20300x250%20White%20CDN%20Sign%20Up.jpg)](https://www.quadrigacx.com/?ref=c7flx49lbhc3b1awgl8pig7l)
 
 ## Installation via NuGet
+
+[![nuget](https://img.shields.io/nuget/v/QuadrigaCX.Api.svg)](https://www.nuget.org/packages/QuadrigaCX.Api/)
+![Downloads](https://img.shields.io/nuget/dt/QuadrigaCx.Api.svg)
+
 ```
 Install-Package QuadrigaCX.Api
 ```
